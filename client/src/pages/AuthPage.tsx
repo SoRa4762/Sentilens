@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import { FaGoogle, FaFacebook, FaApple } from "react-icons/fa";
 
-const AuthPage = () => {
-  const [isLogin, setIsLogin] = useState(true);
-  const [formData, setFormData] = useState({
+interface FormDataTypes {
+  fullName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  agreeToTerms: boolean;
+}
+
+const AuthPage: React.FC = () => {
+  const [isLogin, setIsLogin] = useState<boolean>(true);
+  const [formData, setFormData] = useState<FormDataTypes>({
     fullName: "",
     email: "",
     password: "",
@@ -11,7 +19,7 @@ const AuthPage = () => {
     agreeToTerms: false,
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
@@ -19,7 +27,7 @@ const AuthPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Here you would implement your authentication logic
     console.log("Form submitted:", formData);
@@ -62,22 +70,22 @@ const AuthPage = () => {
           {/* Login/Signup Toggle */}
           <div className="flex p-1 mb-6 overflow-hidden bg-gray-100 rounded-lg">
             <button
-              className={`flex-1 py-2 text-sm font-medium rounded-md transition-all ${
+              className={`flex-1 py-2 text-sm font-medium rounded-md hover:cursor-pointer transition-all ${
                 isLogin
                   ? "bg-white text-indigo-600 shadow"
                   : "text-gray-600 hover:text-gray-800"
               }`}
-              onClick={() => setIsLogin(true)}
+              onClick={() => toggleAuthMode()}
             >
               Login
             </button>
             <button
-              className={`flex-1 py-2 text-sm font-medium rounded-md transition-all ${
+              className={`flex-1 py-2 text-sm font-medium hover:cursor-pointer rounded-md transition-all ${
                 !isLogin
                   ? "bg-white text-indigo-600 shadow"
                   : "text-gray-600 hover:text-gray-800"
               }`}
-              onClick={() => setIsLogin(false)}
+              onClick={() => toggleAuthMode()}
             >
               Sign Up
             </button>
@@ -187,7 +195,7 @@ const AuthPage = () => {
                       required={!isLogin}
                       checked={formData.agreeToTerms}
                       onChange={handleChange}
-                      className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                      className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 hover:cursor-pointer"
                     />
                     <label
                       htmlFor="agreeToTerms"
@@ -207,7 +215,7 @@ const AuthPage = () => {
 
               <button
                 type="submit"
-                className="w-full px-4 py-3 mt-2 font-medium text-white transition-colors bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="w-full px-4 py-3 mt-2 font-medium text-white transition-colors bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 hover:cursor-pointer"
               >
                 {isLogin ? "Login" : "Sign Up"}
               </button>
@@ -221,19 +229,19 @@ const AuthPage = () => {
               <div className="flex justify-center space-x-4">
                 <button
                   type="button"
-                  className="flex items-center justify-center w-12 h-12 text-red-600 transition-colors bg-white border border-gray-300 rounded-full hover:bg-gray-50"
+                  className="flex items-center justify-center w-12 h-12 text-red-600 transition-colors bg-white border border-gray-300 rounded-full hover:bg-gray-50 hover:cursor-pointer"
                 >
                   <FaGoogle className="w-5 h-5" />
                 </button>
                 <button
                   type="button"
-                  className="flex items-center justify-center w-12 h-12 text-blue-600 transition-colors bg-white border border-gray-300 rounded-full hover:bg-gray-50"
+                  className="flex items-center justify-center w-12 h-12 text-blue-600 transition-colors bg-white border border-gray-300 rounded-full hover:bg-gray-50 hover:cursor-pointer"
                 >
                   <FaFacebook className="w-5 h-5" />
                 </button>
                 <button
                   type="button"
-                  className="flex items-center justify-center w-12 h-12 text-gray-800 transition-colors bg-white border border-gray-300 rounded-full hover:bg-gray-50"
+                  className="flex items-center justify-center w-12 h-12 text-gray-800 transition-colors bg-white border border-gray-300 rounded-full hover:bg-gray-50 hover:cursor-pointer"
                 >
                   <FaApple className="w-5 h-5" />
                 </button>
