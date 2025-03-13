@@ -1,6 +1,0 @@
-@SentilensAPI_HostAddress = http://localhost:5239
-
-GET {{SentilensAPI_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
