@@ -27,5 +27,22 @@ namespace api.Infrastructure.Repositories
                 .Where(a => a.FeedSourceId == feedSourceId)
                 .ToListAsync();
         }
+
+        public async Task<IReadOnlyList<Article>> GetAllByFeedSourceIdAndDateRangeAsync(int feedSourceId, DateTime startDate, DateTime endDate)
+        {
+            return await _context.Article
+                .Where(a => a.FeedSourceId == feedSourceId &&
+                            a.PublishedAt >= startDate &&
+                            a.PublishedAt <= endDate)
+                .ToListAsync();
+        }
+
+        public async Task<IReadOnlyList<Article>> GetAllByDateRangeAsync(DateTime startDate, DateTime endDate)
+        {
+            return await _context.Article
+                .Where(a => a.PublishedAt >= startDate &&
+                            a.PublishedAt <= endDate)
+                .ToListAsync();
+        }
     }
 }
