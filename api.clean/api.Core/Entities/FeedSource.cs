@@ -15,6 +15,5 @@ namespace api.Core.Entities
         public string? ImageUrl { get; set; } = string.Empty;
         public string? Language { get; set; } = string.Empty;
         public string? Category { get; set; } = string.Empty;
-        
     }
 }
