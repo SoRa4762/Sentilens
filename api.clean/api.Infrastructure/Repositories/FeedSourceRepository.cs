@@ -14,7 +14,7 @@ namespace api.Infrastructure.Repositories
     public class FeedSourceRepository : Repository<FeedSource>, IFeedSourceRepository
     {
         public FeedSourceRepository(AppDbContext context) : base(context) { }
-        // I don't have users rn, huh, need to think of a new logic huh?
+        // ** I don't have users rn, huh, need to think of a new logic huh?
         public async Task<IReadOnlyList<FeedSource>> GetAllByUserTopicIdAsync(int userTopicId)
         {
             return await _context.FeedSource
@@ -22,7 +22,7 @@ namespace api.Infrastructure.Repositories
                 .ToListAsync();
         }
 
-
+        // ** might have to change the CreatedAt field with the actual date field... but that is for later!
         public async Task<IReadOnlyList<FeedSource>> GetAllByDateRangeAsync(DateTime startDate, DateTime endDate)
         {
             return await _context.FeedSource
@@ -31,7 +31,7 @@ namespace api.Infrastructure.Repositories
                 .ToListAsync();
         }
 
-        // make changes here as well, later
+        // ** make changes here as well, later
         public async Task<IReadOnlyList<FeedSource>> GetAllByUserTopicIdAndDateRangeAsync(int userTopicId, DateTime startDate, DateTime endDate)
         {
             return await _context.FeedSource

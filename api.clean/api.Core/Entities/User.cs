@@ -9,6 +9,9 @@ namespace api.Core.Entities
 {
     public class User : IdentityUser
     {
-        List<UserTopic> UserTopics { get; set; } = new List<UserTopic>();
+        /// <summary>
+        // if it ain't public, it won't be serialized, won't be accessible to AppDbContext
+        /// </summary>
+        public List<UserTopic> UserTopics { get; set; } = new List<UserTopic>();
     }
 }
