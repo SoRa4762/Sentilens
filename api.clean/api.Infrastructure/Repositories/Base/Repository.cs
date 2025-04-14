@@ -13,7 +13,7 @@ namespace api.Infrastructure.Repositories.Base
 {
     public class Repository<T> : IRepository<T> where T : Entity
     {
-        private protected AppDbContext _context;
+        private protected readonly AppDbContext _context;
         public Repository(AppDbContext context)
         {
             _context = context;
