@@ -8,7 +8,11 @@ namespace api.Core.Entities
 {
     public class UserTopic
     {
-        public string UserId { get; set; } = string.Empty;
+        public string UserId { get; set; }
         public int TopicId { get; set; }
+
+        // Navigation Properties (one to one)
+        public User User { get; set; }
+        public Topic Topic { get; set; }
     }
 }

@@ -15,5 +15,11 @@ namespace api.Core.Entities
         public string? ImageUrl { get; set; } = string.Empty;
         public string? Language { get; set; } = string.Empty;
         public string? Category { get; set; } = string.Empty;
+        public bool IsActive { get; set; }
+
+        // Navigation Properties (one to many)
+        public List<Article> Articles { get; set; } = new();
+        public List<FeedSourceTopic> FeedSourceTopics { get; set; } = new();
+
     }
 }
