@@ -10,4 +10,17 @@
     <ProjectReference Include="..\api.Core\api.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Mappers\" />
+    <Folder Include="Handlers\" />
+    <Folder Include="Responses\" />
+    <Folder Include="Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.1.1" />
+    <PackageReference Include="FluentValidation" Version="8.6.3" />
+    <PackageReference Include="MediatR" Version="8.1.0" />
+  </ItemGroup>
+
 </Project>
