@@ -3,8 +3,28 @@
   "WorkspaceRootPath": "D:\\Web Development\\Self\\Sentilens\\api.clean\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{EB3FCCFE-5F9D-4D96-821E-9D39FF7B1545}|api.Application\\api.Application.csproj|d:\\web development\\self\\sentilens\\api.clean\\api.application\\queries\\getallbyfeedsourceidquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB3FCCFE-5F9D-4D96-821E-9D39FF7B1545}|api.Application\\api.Application.csproj|solutionrelative:api.application\\queries\\getallbyfeedsourceidquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB3FCCFE-5F9D-4D96-821E-9D39FF7B1545}|api.Application\\api.Application.csproj|d:\\web development\\self\\sentilens\\api.clean\\api.application\\handlers\\createarticlecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB3FCCFE-5F9D-4D96-821E-9D39FF7B1545}|api.Application\\api.Application.csproj|solutionrelative:api.application\\handlers\\createarticlecommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{EB3FCCFE-5F9D-4D96-821E-9D39FF7B1545}|api.Application\\api.Application.csproj|d:\\web development\\self\\sentilens\\api.clean\\api.application\\commands\\createarticlecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EB3FCCFE-5F9D-4D96-821E-9D39FF7B1545}|api.Application\\api.Application.csproj|solutionrelative:api.application\\commands\\createarticlecommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB3FCCFE-5F9D-4D96-821E-9D39FF7B1545}|api.Application\\api.Application.csproj|d:\\web development\\self\\sentilens\\api.clean\\api.application\\mappers\\articlemapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB3FCCFE-5F9D-4D96-821E-9D39FF7B1545}|api.Application\\api.Application.csproj|solutionrelative:api.application\\mappers\\articlemapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB3FCCFE-5F9D-4D96-821E-9D39FF7B1545}|api.Application\\api.Application.csproj|d:\\web development\\self\\sentilens\\api.clean\\api.application\\responses\\articleresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB3FCCFE-5F9D-4D96-821E-9D39FF7B1545}|api.Application\\api.Application.csproj|solutionrelative:api.application\\responses\\articleresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB3FCCFE-5F9D-4D96-821E-9D39FF7B1545}|api.Application\\api.Application.csproj|d:\\web development\\self\\sentilens\\api.clean\\api.application\\mappers\\articlemappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB3FCCFE-5F9D-4D96-821E-9D39FF7B1545}|api.Application\\api.Application.csproj|solutionrelative:api.application\\mappers\\articlemappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7EF71464-887F-4520-A196-9FC4BF1BD3A9}|api.Core\\api.Core.csproj|d:\\web development\\self\\sentilens\\api.clean\\api.core\\entities\\article.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -18,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -35,6 +55,84 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "CreateArticleCommandHandler.cs",
+              "DocumentMoniker": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Handlers\\CreateArticleCommandHandler.cs",
+              "RelativeDocumentMoniker": "api.Application\\Handlers\\CreateArticleCommandHandler.cs",
+              "ToolTip": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Handlers\\CreateArticleCommandHandler.cs",
+              "RelativeToolTip": "api.Application\\Handlers\\CreateArticleCommandHandler.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T09:50:23.751Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CreateArticleCommand.cs",
+              "DocumentMoniker": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Commands\\CreateArticleCommand.cs",
+              "RelativeDocumentMoniker": "api.Application\\Commands\\CreateArticleCommand.cs",
+              "ToolTip": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Commands\\CreateArticleCommand.cs",
+              "RelativeToolTip": "api.Application\\Commands\\CreateArticleCommand.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABAAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T09:41:08.367Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GetAllByFeedSourceIdQuery.cs",
+              "DocumentMoniker": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Queries\\GetAllByFeedSourceIdQuery.cs",
+              "RelativeDocumentMoniker": "api.Application\\Queries\\GetAllByFeedSourceIdQuery.cs",
+              "ToolTip": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Queries\\GetAllByFeedSourceIdQuery.cs",
+              "RelativeToolTip": "api.Application\\Queries\\GetAllByFeedSourceIdQuery.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T10:10:57.023Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ArticleMapper.cs",
+              "DocumentMoniker": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Mappers\\ArticleMapper.cs",
+              "RelativeDocumentMoniker": "api.Application\\Mappers\\ArticleMapper.cs",
+              "ToolTip": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Mappers\\ArticleMapper.cs",
+              "RelativeToolTip": "api.Application\\Mappers\\ArticleMapper.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAkAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T08:07:20.093Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ArticleResponse.cs",
+              "DocumentMoniker": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Responses\\ArticleResponse.cs",
+              "RelativeDocumentMoniker": "api.Application\\Responses\\ArticleResponse.cs",
+              "ToolTip": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Responses\\ArticleResponse.cs",
+              "RelativeToolTip": "api.Application\\Responses\\ArticleResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T09:47:25.916Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ArticleMappingProfile.cs",
+              "DocumentMoniker": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Mappers\\ArticleMappingProfile.cs",
+              "RelativeDocumentMoniker": "api.Application\\Mappers\\ArticleMappingProfile.cs",
+              "ToolTip": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Mappers\\ArticleMappingProfile.cs",
+              "RelativeToolTip": "api.Application\\Mappers\\ArticleMappingProfile.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABgAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T08:09:22.715Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Article.cs",
               "DocumentMoniker": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Core\\Entities\\Article.cs",
               "RelativeDocumentMoniker": "api.Core\\Entities\\Article.cs",
@@ -42,21 +140,7 @@
               "RelativeToolTip": "api.Core\\Entities\\Article.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T09:42:10.213Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CreateArticleCommand.cs",
-              "DocumentMoniker": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Commands\\CreateArticleCommand.cs",
-              "RelativeDocumentMoniker": "api.Application\\Commands\\CreateArticleCommand.cs",
-              "ToolTip": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Commands\\CreateArticleCommand.cs",
-              "RelativeToolTip": "api.Application\\Commands\\CreateArticleCommand.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T09:41:08.367Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-15T09:42:10.213Z"
             }
           ]
         }
