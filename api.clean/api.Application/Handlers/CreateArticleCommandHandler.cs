@@ -2,6 +2,7 @@
 using api.Application.Responses;
 using api.Core.Entities;
 using api.Core.Interfaces;
+using api.Application.Mappers;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,10 @@ using System.Threading.Tasks;
 
 namespace api.Application.Handlers
 {
-    public class CreateCommandHandler : IRequest<CreateArticleCommand, ArticleResponse>
+    public class CreateArticleCommandHandler : IRequest<CreateArticleCommand, ArticleResponse>
     {
         private protected readonly IArticleRepository _articleRepository;
-        public CreateCommandHandler(IArticleRepository articleRepository)
+        public CreateArticleCommandHandler(IArticleRepository articleRepository)
         {
             _articleRepository = articleRepository;
         }
