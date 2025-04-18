@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace api.Application.Handlers
 {
-    public class CreateArticleCommandHandler : IRequest<CreateArticleCommand, ArticleResponse>
+    public class CreateArticleCommandHandler : IRequestHandler<CreateArticleCommand, ArticleResponse>
     {
         private protected readonly IArticleRepository _articleRepository;
         public CreateArticleCommandHandler(IArticleRepository articleRepository)
