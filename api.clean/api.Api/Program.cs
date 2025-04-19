@@ -3,21 +3,23 @@ using api.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore; // Add this using directive for AppDbContext
 //using AutoMapper; no need actually
 using MediatR;
-using api.Application.Handlers;
 using api.Core.Interfaces.Base;
 using api.Infrastructure.Repositories.Base;
 using api.Core.Interfaces;
 using api.Infrastructure.Repositories;
 using Asp.Versioning;
+using api.Application.Handlers.ArticleHandlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
+// configuring the connection string
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// swagger configuration
 builder.Services.AddSwaggerGen( c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo()
@@ -27,6 +29,7 @@ builder.Services.AddSwaggerGen( c =>
     });
 });
 
+// configuring the API versioning
 builder.Services.AddApiVersioning(options =>
 {
     options.DefaultApiVersion = new ApiVersion(1.0);
@@ -39,8 +42,11 @@ builder.Services.AddApiVersioning(options =>
     options.SubstituteApiVersionInUrl = true;
 });
 
+// configuring the controllers
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+
+// configuring AutoMappers and MediatR
 builder.Services.AddAutoMapper(typeof(Program));
 //builder.Services.AddMediatR(typeof(CreateArticleCommandHandler).Assembly); // use this if the cfg does not have RegisterServicesFromAssembly, unavailable to MediatR version below 12
 builder.Services.AddMediatR(cfg =>

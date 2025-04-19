@@ -21,7 +21,7 @@ namespace api.Api.Controllers
 
         [HttpGet("all")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)] // if you added this too, you will get two data displayed: 1. for the 200OK, 2. for the 404NotFound
         public async Task<ActionResult<IReadOnlyList<ArticleResponse>>> GetAllAsync()
         {
             /*  

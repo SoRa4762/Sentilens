@@ -18,8 +18,9 @@ namespace api.Core.Entities
         public bool IsActive { get; set; }
 
         // Navigation Properties (one to many)
-        public List<Article> Articles { get; set; } = new();
-        public List<FeedSourceTopic> FeedSourceTopics { get; set; } = new();
+        public List<Article>? Articles { get; set; } = new();
+        // if it's optional no need to initialize it
+        public List<FeedSourceTopic>? FeedSourceTopics { get; set; }
 
     }
 }
