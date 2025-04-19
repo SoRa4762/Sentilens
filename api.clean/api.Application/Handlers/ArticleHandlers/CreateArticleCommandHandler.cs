@@ -10,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace api.Application.Handlers
+namespace api.Application.Handlers.ArticleHandlers
 {
-    public class CreateArticleCommandHandler : IRequest<CreateArticleCommand, ArticleResponse>
+    public class CreateArticleCommandHandler : IRequestHandler<CreateArticleCommand, ArticleResponse>
     {
         private protected readonly IArticleRepository _articleRepository;
         public CreateArticleCommandHandler(IArticleRepository articleRepository)
