@@ -1,9 +1,13 @@
 using Microsoft.OpenApi.Models; // Add this using directive for OpenApiInfo
 using api.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore; // Add this using directive for AppDbContext
-using AutoMapper;
+//using AutoMapper; no need actually
 using MediatR;
 using api.Application.Handlers;
+using api.Core.Interfaces.Base;
+using api.Infrastructure.Repositories.Base;
+using api.Core.Interfaces;
+using api.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,14 +29,12 @@ builder.Services.AddSwaggerGen( c =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddAutoMapper(typeof(Program));
-//builder.Services.AddMediatR(typeof(CreateArticleCommandHandler).Assembly); // use this if the cfg does not have RegisterServicesFromAssembly
-//builder.Services.AddMediatR(cfg =>
-//    cfg.RegisterServicesFromAssembly
-//    (typeof(CreateArticleCommandHandler).Assembly));
+//builder.Services.AddMediatR(typeof(CreateArticleCommandHandler).Assembly); // use this if the cfg does not have RegisterServicesFromAssembly, unavailable to MediatR version below 12
 builder.Services.AddMediatR(cfg =>
   cfg.RegisterServicesFromAssembly
   (typeof(CreateArticleCommandHandler).Assembly));
-
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>)); // service type and implementation type
+builder.Services.AddTransient<IArticleRepository, ArticleRepository>(); // adds transient service of type specified in interface to implementation type specified in repositories
 
 var app = builder.Build();
 
@@ -43,7 +45,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseRouting();
 app.UseHttpsRedirection();
 app.UseAuthorization();
-app.UseRouting();
 app.Run();
