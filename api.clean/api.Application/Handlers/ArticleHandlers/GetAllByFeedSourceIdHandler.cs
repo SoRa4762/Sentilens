@@ -1,5 +1,5 @@
-﻿using api.Application.Mappers;
-using api.Application.Queries;
+﻿using api.Application.Mappers.ArticleMappers;
+using api.Application.Queries.ArticleQueries;
 using api.Application.Responses;
 using api.Core.Interfaces;
 using MediatR;

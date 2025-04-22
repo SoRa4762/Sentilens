@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace api.Application.Mappers
+namespace api.Application.Mappers.ArticleMappers
 {
     public class ArticleMapper
     {

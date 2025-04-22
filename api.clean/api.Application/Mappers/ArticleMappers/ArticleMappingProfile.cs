@@ -1,4 +1,4 @@
-﻿using api.Application.Commands;
+﻿using api.Application.Commands.ArticleCommands;
 using api.Application.Responses;
 using api.Core.Entities;
 using AutoMapper;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace api.Application.Mappers
+namespace api.Application.Mappers.ArticleMappers
 {
     public class ArticleMappingProfile : Profile // Inherits AutoMapper's Profile
     {
