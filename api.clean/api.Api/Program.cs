@@ -15,11 +15,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
-// configuring the connection string
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// swagger configuration
+// configuring the controllers and swagger
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen( c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo()
@@ -42,18 +41,19 @@ builder.Services.AddApiVersioning(options =>
     options.SubstituteApiVersionInUrl = true;
 });
 
-// configuring the controllers
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
+// configuring the connection string
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // configuring AutoMappers and MediatR
 builder.Services.AddAutoMapper(typeof(Program));
-//builder.Services.AddMediatR(typeof(CreateArticleCommandHandler).Assembly); // use this if the cfg does not have RegisterServicesFromAssembly, unavailable to MediatR version below 12
+// use this if the cfg does not have RegisterServicesFromAssembly, unavailable to MediatR version below 12
+//builder.Services.AddMediatR(typeof(CreateArticleCommandHandler).Assembly);
 builder.Services.AddMediatR(cfg =>
-  cfg.RegisterServicesFromAssembly
-  (typeof(CreateArticleCommandHandler).Assembly));
+  cfg.RegisterServicesFromAssembly(typeof(CreateArticleCommandHandler).Assembly));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>)); // service type and implementation type
 builder.Services.AddTransient<IArticleRepository, ArticleRepository>(); // adds transient service of type specified in interface to implementation type specified in repositories
+builder.Services.AddTransient<IFeedSourceRepository, FeedSourceRepository>();
 
 var app = builder.Build();
 
@@ -67,4 +67,12 @@ if (app.Environment.IsDevelopment())
 app.UseRouting();
 app.UseHttpsRedirection();
 app.UseAuthorization();
+app.MapControllers();
+
+// didn't fix it
+//app.UseEndpoints(endpoints =>
+//{
+//    endpoints.MapControllers();
+//});
+
 app.Run();

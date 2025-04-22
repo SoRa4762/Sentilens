@@ -1,5 +1,6 @@
 ﻿using api.Api.Controllers.Base; // without inheriting this class, the controller won't be recognized as a controller, you also get the error: non-invokable member Ok called as a method
-using api.Application.Queries;
+using api.Application.Commands.ArticleCommands;
+using api.Application.Queries.ArticleQueries;
 using api.Application.Responses;
 using api.Core.Interfaces;
 using MediatR;
@@ -12,11 +13,9 @@ namespace api.Api.Controllers
     public class ArticleController : ApiController
     {
         private readonly IMediator _mediator;
-        private readonly IArticleRepository _articleRepo;
-        public ArticleController(IMediator mediator, IArticleRepository articleRepo)
+        public ArticleController(IMediator mediator)
         {
             _mediator = mediator;
-            _articleRepo = articleRepo;
         }
 
         [HttpGet("all")]
@@ -26,9 +25,20 @@ namespace api.Api.Controllers
         {
             /*  
              *  I don't have a query for this... should I create one?
+             *  April 20: query for what actually?
+             *  April 22: query from MediatR it seems like
              *  cuz even without one I can still work like this
              */
-            var articles = await _articleRepo.GetAllAsync();
+
+            /*
+             * you could do this as well, but why do it even eh ?
+             * let's just follow CQRS eh?
+             * var articles = await _articleRepo.GetAllAsync();
+             * return Ok(articles);
+             */
+
+            var query = new GetAllArticlesQuery();
+            var articles = await _mediator.Send(query);
             return Ok(articles);
         }
 
@@ -41,7 +51,13 @@ namespace api.Api.Controllers
             var articles = await _mediator.Send(query);
             return Ok(articles);
         }
-
-
+        
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<ActionResult<ArticleResponse>> CreateArticleAsync([FromBody] CreateArticleCommand command)
+        {
+            var article = await _mediator.Send(command);
+            return CreatedAtAction(nameof(GetAllByFeedSourceIdAsync), new { feedSourceId = article.FeedSourceId }, article);
+        }
     }
 }

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace api.Application.Commands
+namespace api.Application.Commands.ArticleCommands
 {
     public class CreateArticleCommand : IRequest<ArticleResponse>
     {
