@@ -16,6 +16,7 @@ namespace api.Core.Entities
         public DateTime PublishedAt { get; set; }
         public string? ImageUrl { get; set; } = string.Empty;
         public float SentimentScore { get; set; }
+
         // foreign key
         public int FeedSourceId { get; set; }
         // navigation property (one to one)
