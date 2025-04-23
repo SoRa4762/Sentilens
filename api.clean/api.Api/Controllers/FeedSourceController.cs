@@ -21,17 +21,34 @@ namespace api.Api.Controllers
         public async Task<ActionResult<FeedSourceResponse>> GetAllFeedSourceAsync()
         {
             var query = new GetAllFeedSourceQuery();
+            var feedSourceList = await _mediator.Send(query);
+            return Ok(feedSourceList);
+        }
+
+        [HttpGet("{feedSourceId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<FeedSourceResponse>> GetFeedSourceByIdAsync(int feedSourceId)
+        {
+            var query = new GetFeedSourceByIdQuery(feedSourceId);
             var feedSource = await _mediator.Send(query);
             return Ok(feedSource);
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<FeedSourceResponse>> CreateFeedSourceAsync(CreateFeedSourceCommand command)
         {
             var feedSource = await _mediator.Send(command);
-            return CreatedAtAction(nameof(GetAllFeedSourceAsync), new { id = feedSource.Id }, feedSource);
+            return Ok(feedSource);
 
+            // Realized it quite late but... maybe I don't have to return CreatedAtAction and only feedSource cuz this time the data will be handled by handler and presented through Response DTO 
+            //Console.WriteLine($"feedSource.Id: {feedSource.Id}");
+            //return CreatedAtAction(
+            //    actionName: nameof(GetFeedSourceByIdAsync),
+            //    controllerName: "v1/FeedSource",
+            //    routeValues: new { feedSourceId = feedSource.Id },
+            //    value: feedSource
+            //);
         }
     }
 }
