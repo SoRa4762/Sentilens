@@ -18,12 +18,25 @@ namespace api.Infrastructure.Repositories.Base
         {
             _context = context;
         }
+
         public async Task<T> AddAsync(T entity)
         {
-            await _context.Set<T>().AddAsync(entity);
-            await _context.SaveChangesAsync();
-            return entity;
+            try
+            {
+                _context.Set<T>().Add(entity);
+                await _context.SaveChangesAsync();
+                return entity;
+            }
+            catch (DbUpdateException ex) when (ex.InnerException?.Message.Contains("FOREIGN KEY") == true)
+            {
+                throw new ApplicationException("A foreign key constraint was violated. Please ensure all related entities exist.", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("An unexpected error occurred while adding the entity.", ex);
+            }
         }
+
 
         public async Task<IReadOnlyList<T>> GetAllAsync()
         {

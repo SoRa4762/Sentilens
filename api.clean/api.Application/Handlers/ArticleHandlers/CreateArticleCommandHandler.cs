@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using api.Application.Mappers.ArticleMappers;
 using api.Application.Commands.ArticleCommands;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Application.Handlers.ArticleHandlers
 {
@@ -28,9 +30,22 @@ namespace api.Application.Handlers.ArticleHandlers
                 throw new ApplicationException("Mapping failed");
             }
 
-            var newArticle = await _articleRepository.AddAsync(articleEntity);
-            var articleResponse = ArticleMapper.Mapper.Map<ArticleResponse>(newArticle);
-            return articleResponse;
+            // You should not get errors mate - add DbException on the repository level
+            try
+            {
+                var newArticle = await _articleRepository.AddAsync(articleEntity);
+                var articleResponse = ArticleMapper.Mapper.Map<ArticleResponse>(newArticle);
+                return articleResponse;
+            }
+            catch (AutoMapperMappingException ex)
+            {
+                throw new ApplicationException("An error occurred while mapping the article response.", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("An unexpected error occurred.", ex);
+            }
+
         }
 
     }
