@@ -65,9 +65,9 @@
               "target": "Package",
               "version": "[8.1.0, )"
             },
-            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+            "AutoMapper": {
               "target": "Package",
-              "version": "[8.1.1, )"
+              "version": "[14.0.0, )"
             },
             "MediatR.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
@@ -163,11 +163,11 @@
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[8.1.1, )"
+              "version": "[14.0.0, )"
             },
             "FluentValidation": {
               "target": "Package",
-              "version": "[8.6.3, )"
+              "version": "[11.11.0, )"
             },
             "MediatR": {
               "target": "Package",

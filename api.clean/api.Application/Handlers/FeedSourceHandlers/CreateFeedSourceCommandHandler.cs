@@ -23,12 +23,14 @@ namespace api.Application.Handlers.FeedSourceHandlers
 
         public async Task<FeedSourceResponse> Handle(CreateFeedSourceCommand request, CancellationToken cancellationToken)
         {
+            // turn Create DTO to Entity
             var feedSourceEntity = FeedSourceMapper.Mapper.Map<FeedSource>(request);
             if (feedSourceEntity == null) {
                 throw new ApplicationException("FeedSource Mapping Failed!");
             }
 
             var newFeedSource = await _repository.AddAsync(feedSourceEntity);
+            // turn Entity to Response DTO
             var feedSourceResponse = FeedSourceMapper.Mapper.Map<FeedSourceResponse>(newFeedSource);
             return feedSourceResponse;
         }
