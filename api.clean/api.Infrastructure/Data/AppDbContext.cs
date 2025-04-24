@@ -26,9 +26,9 @@ namespace api.Infrastructure.Data
             base.OnModelCreating(modelBuilder);
 
             // FeedSource -> Article (one to many)
-            modelBuilder.Entity<FeedSource>()
-                .HasMany(fs => fs.Articles)
-                .WithOne(a => a.FeedSource)
+            modelBuilder.Entity<Article>()
+                .HasOne(a => a.FeedSource)
+                .WithMany(fs => fs.Articles)
                 .HasForeignKey(a => a.FeedSourceId)
                 .OnDelete(DeleteBehavior.Cascade); // if FeedSource is deleted, delete all related Articles
 

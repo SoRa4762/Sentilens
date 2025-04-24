@@ -2,11 +2,8 @@
 using api.Application.Commands.ArticleCommands;
 using api.Application.Queries.ArticleQueries;
 using api.Application.Responses;
-using api.Core.Interfaces;
 using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Cryptography.X509Certificates;
 
 namespace api.Api.Controllers
 {
@@ -56,6 +53,12 @@ namespace api.Api.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<ArticleResponse>> CreateArticleAsync([FromBody] CreateArticleCommand command)
         {
+            var feedSource = GetAllByFeedSourceIdAsync(command.FeedSourceId);
+            if(feedSource == null)
+            {
+                return NotFound("FeedSource not found!");
+            }
+            Console.WriteLine($"FeedSourceId: {command.FeedSourceId}");
             var article = await _mediator.Send(command);
             return CreatedAtAction(nameof(GetAllByFeedSourceIdAsync), new { feedSourceId = article.FeedSourceId }, article);
         }

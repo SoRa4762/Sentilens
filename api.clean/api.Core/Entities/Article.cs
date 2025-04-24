@@ -18,7 +18,7 @@ namespace api.Core.Entities
         public float SentimentScore { get; set; }
 
         // foreign key
-        public int FeedSourceId { get; set; }
+        public int FeedSourceId { get; protected set; }
         // navigation property (one to one)
         public FeedSource? FeedSource { get; set; }
     }
