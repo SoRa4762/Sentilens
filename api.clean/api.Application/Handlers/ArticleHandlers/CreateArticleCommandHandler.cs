@@ -25,6 +25,7 @@ namespace api.Application.Handlers.ArticleHandlers
         public async Task<ArticleResponse> Handle(CreateArticleCommand request, CancellationToken cancellationToken)
         {
             var articleEntity = ArticleMapper.Mapper.Map<Article>(request);
+            Console.WriteLine($"ForeignKey FeedSource ID: {request.FeedSourceId}");
             if(articleEntity == null)
             {
                 throw new ApplicationException("Mapping failed");

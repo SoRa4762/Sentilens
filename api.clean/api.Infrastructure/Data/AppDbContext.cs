@@ -26,14 +26,15 @@ namespace api.Infrastructure.Data
             base.OnModelCreating(modelBuilder);
 
             // FeedSource -> Article (one to many)
-            modelBuilder.Entity<FeedSource>()
-                .HasMany(fs => fs.Articles)
-                .WithOne(a => a.FeedSource)
-                .HasForeignKey(a => a.FeedSourceId);
+            modelBuilder.Entity<Article>()
+                .HasOne(a => a.FeedSource)
+                .WithMany(fs => fs.Articles)
+                .HasForeignKey(a => a.FeedSourceId)
+                .OnDelete(DeleteBehavior.Cascade); // if FeedSource is deleted, delete all related Articles
 
             // FeedSource <-> Topic (many to many via FeedSourceTopic(bridge entity))
             modelBuilder.Entity<FeedSourceTopic>()
-                .HasKey(fst => new { fst.FeedSourceId, fst.TopicId });
+                .HasKey(fst => new { fst.FeedSourceId, fst.TopicId }); // Composite Primary Key
 
             modelBuilder.Entity<FeedSourceTopic>()
                 .HasOne(fst => fst.FeedSource)
