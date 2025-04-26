@@ -17,7 +17,7 @@ namespace api.Api.Controllers
 
         [HttpGet("all")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        //[ProducesResponseType(StatusCodes.Status404NotFound)] // if you added this too, you will get two data displayed: 1. for the 200OK, 2. for the 404NotFound
+        [ProducesResponseType(StatusCodes.Status404NotFound)] // if you added this too, you will get two data displayed: 1. for the 200OK, 2. for the 404NotFound
         public async Task<ActionResult<IReadOnlyList<ArticleResponse>>> GetAllAsync()
         {
             /*  
@@ -41,6 +41,7 @@ namespace api.Api.Controllers
 
         [HttpGet("{feedSourceId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         // IActionResult cannot be used with a type arguments
         public async Task<ActionResult<IReadOnlyList<ArticleResponse>>> GetAllByFeedSourceIdAsync(int feedSourceId)
         {
@@ -53,14 +54,10 @@ namespace api.Api.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<ArticleResponse>> CreateArticleAsync([FromBody] CreateArticleCommand command)
         {
-            var feedSource = GetAllByFeedSourceIdAsync(command.FeedSourceId);
-            if(feedSource == null)
-            {
-                return NotFound("FeedSource not found!");
-            }
             Console.WriteLine($"FeedSourceId: {command.FeedSourceId}");
             var article = await _mediator.Send(command);
-            return CreatedAtAction(nameof(GetAllByFeedSourceIdAsync), new { feedSourceId = article.FeedSourceId }, article);
+            //return CreatedAtAction(nameof(GetAllByFeedSourceIdAsync), new { feedSourceId = article.FeedSourceId }, article);
+            return Ok(article);
         }
     }
 }
