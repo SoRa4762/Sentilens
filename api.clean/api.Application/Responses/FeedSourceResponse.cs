@@ -1,4 +1,5 @@
-﻿using System;
+﻿using api.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,5 +17,6 @@ namespace api.Application.Responses
         public string? Language { get; set; } = string.Empty;
         public string? Category { get; set; } = string.Empty;
         public bool IsActive { get; set; }
+        public List<Article>? Articles { get; set; }
     }
 }

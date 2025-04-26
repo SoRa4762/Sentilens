@@ -19,6 +19,9 @@ namespace api.Application.Commands.ArticleCommands
         public string? ImageUrl { get; set; } = string.Empty;
         public float SentimentScore { get; set; }
         // foreign key
-        public int FeedSourceId { get; protected set; }
+        public int FeedSourceId { get; set; }
+        //public FeedSource? FeedSource { get; set; }
+        //public FeedSource FeedSource { get; set; }
+
     }
 }

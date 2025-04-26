@@ -37,7 +37,24 @@ namespace api.Infrastructure.Repositories.Base
             }
         }
 
-
+        // something wrong with this method
+        //public async Task<T> AddRangeAsync(IReadOnlyList<T> entities)
+        //{
+        //    try
+        //    {
+        //        await _context.Set<T>().AddRangeAsync(entities);
+        //        await _context.SaveChangesAsync();
+        //        return entities.FirstOrDefault(e => e == entities);
+        //    }
+        //    catch (DbUpdateException ex) when (ex.InnerException?.Message.Contains("FOREIGN KEY") == true)
+        //    {
+        //        throw new ApplicationException("A foreign key constraint was violated. Please ensure all related entities exist.", ex);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new ApplicationException("An unexpected error occurred while adding the entities.", ex);
+        //    }
+        //}
         public async Task<IReadOnlyList<T>> GetAllAsync()
         {
             return await _context.Set<T>().ToListAsync();
