@@ -11,10 +11,10 @@ using api.Application.Mappers.FeedSourceMapper;
 
 namespace api.Application.Handlers.FeedSourceHandlers
 {
-    public class DeleteFeedSourceByIdHandler : IRequestHandler<DeleteFeedSourceByIdQuery, FeedSourceResponse>
+    public class DeleteFeedSourceByIdQueryHandler : IRequestHandler<DeleteFeedSourceByIdQuery, FeedSourceResponse>
     {
         public IFeedSourceRepository _feedSourceRepository { get; set; }
-        public DeleteFeedSourceByIdHandler(IFeedSourceRepository feedSourceRepository) {
+        public DeleteFeedSourceByIdQueryHandler(IFeedSourceRepository feedSourceRepository) {
             _feedSourceRepository = feedSourceRepository;
         }
 

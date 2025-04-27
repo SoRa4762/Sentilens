@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace api.Application.Handlers.ArticleHandlers
 {
-    public class GetAllArticlesHandler : IRequestHandler<GetAllArticlesQuery, IReadOnlyList<ArticleResponse>>
+    public class GetAllArticlesQueryHandler : IRequestHandler<GetAllArticlesQuery, IReadOnlyList<ArticleResponse>>
     {
         private readonly IArticleRepository _articleRepo;
-        public GetAllArticlesHandler(IArticleRepository articleRepo)
+        public GetAllArticlesQueryHandler(IArticleRepository articleRepo)
         {
             _articleRepo = articleRepo;
         }

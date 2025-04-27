@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace api.Application.Handlers.ArticleHandlers
 {
-    public class DeleteArticleByIdHandler : IRequestHandler<DeleteArticleByIdQuery, ArticleResponse>
+    public class DeleteArticleByIdQueryHandler : IRequestHandler<DeleteArticleByIdQuery, ArticleResponse>
     {
         public IArticleRepository _articleRepository;
-        public DeleteArticleByIdHandler(IArticleRepository articleRepository)
+        public DeleteArticleByIdQueryHandler(IArticleRepository articleRepository)
         {
             _articleRepository = articleRepository;
         }
