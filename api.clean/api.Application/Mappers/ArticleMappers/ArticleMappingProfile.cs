@@ -25,6 +25,14 @@ namespace api.Application.Mappers.ArticleMappers
             CreateMap<Article, ArticleResponse>().ReverseMap();
             // Rule 2: Map between Article (Entity) and CreateMovieCommand (Command Objects)
             CreateMap<Article, CreateArticleCommand>().ReverseMap();
+            // Rule 3: Map between Article (Entity) and UpdateMovieCommand (Command Objects)
+            CreateMap<UpdateArticleCommand, Article>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) =>
+                srcMember != null
+                ));
+            //    //.ReverseMap();
+            //CreateMap<Article, UpdateArticleCommand>().ReverseMap();
         }
     }
 }

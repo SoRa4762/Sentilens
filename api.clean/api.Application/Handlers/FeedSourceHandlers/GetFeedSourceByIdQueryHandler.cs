@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace api.Application.Handlers.FeedSourceHandlers
 {
-    public class GetFeedSourceByIdHandler : IRequestHandler<GetFeedSourceByIdQuery, FeedSourceResponse>
+    public class GetFeedSourceByIdQueryHandler : IRequestHandler<GetFeedSourceByIdQuery, FeedSourceResponse>
     {
         private readonly IFeedSourceRepository _feedSourceRepo;
-        public GetFeedSourceByIdHandler(IFeedSourceRepository feedSourceRepo)
+        public GetFeedSourceByIdQueryHandler(IFeedSourceRepository feedSourceRepo)
         {
             _feedSourceRepo = feedSourceRepo;
         }

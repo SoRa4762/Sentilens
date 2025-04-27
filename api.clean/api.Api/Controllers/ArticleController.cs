@@ -71,5 +71,15 @@ namespace api.Api.Controllers
             if (articleDto == null) return NotFound("Article Not Found!");
             return Ok(articleDto);
         }
+
+        [HttpPut("{articleId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<ArticleResponse>> UpdateArticleAsync(int articleId, [FromBody] UpdateArticleCommand command)
+        {
+            command.ArticleId = articleId;
+            var article = await _mediator.Send(command);
+            return Ok(article);
+        }
+
     }
 }
