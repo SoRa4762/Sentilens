@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace api.Application.Queries.FeedSourceQueries
 {
-    public class DeleteFeedSourceById : IRequest<FeedSourceResponse>
+    public class DeleteFeedSourceByIdQuery : IRequest<FeedSourceResponse>
     {
-        int FeedSourceId { get; set; }
-        public DeleteFeedSourceById(int feedSourceId)
+        public int FeedSourceId { get; set; }
+        public DeleteFeedSourceByIdQuery(int feedSourceId)
         {
             FeedSourceId = feedSourceId;
         }

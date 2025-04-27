@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace api.Application.Queries.ArticleQueries
 {
-    public class DeleteArticleById : IRequest<ArticleResponse>
+    public class DeleteArticleByIdQuery : IRequest<ArticleResponse>
     {
         public int ArticleId { get; set; }
-        public DeleteArticleById(int articleId)
+        public DeleteArticleByIdQuery(int articleId)
         {
             ArticleId = articleId;
         }
