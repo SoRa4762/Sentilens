@@ -34,11 +34,6 @@ namespace api.Application.Mappers.ArticleMappers
                 ));
             //    //.ReverseMap();
             // CreateMap<Article, UpdateArticleCommand>().ReverseMap(); - Doesn't work
-            CreateMap<UpdateFeedSourceCommand, FeedSource>()
-                .ForMember(dest => dest.Id, opt => opt.Ignore())
-                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) =>
-                srcMember != null
-                ));
         }
     }
 }
