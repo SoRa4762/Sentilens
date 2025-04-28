@@ -1,4 +1,5 @@
 ﻿using api.Application.Commands.ArticleCommands;
+using api.Application.Commands.FeedSourceCommands;
 using api.Application.Responses;
 using api.Core.Entities;
 using AutoMapper;
@@ -32,7 +33,7 @@ namespace api.Application.Mappers.ArticleMappers
                 srcMember != null
                 ));
             //    //.ReverseMap();
-            //CreateMap<Article, UpdateArticleCommand>().ReverseMap();
+            // CreateMap<Article, UpdateArticleCommand>().ReverseMap(); - Doesn't work
         }
     }
 }

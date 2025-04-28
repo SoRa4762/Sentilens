@@ -16,11 +16,9 @@ namespace api.Application.Handlers.ArticleHandlers
     public  class UpdateArticleCommandHandler : IRequestHandler<UpdateArticleCommand, ArticleResponse>
     {
         private protected readonly IArticleRepository _articleRepository;
-        private protected readonly IMapper _mapper;
-        public UpdateArticleCommandHandler(IArticleRepository articleRepository, IMapper mapper)
+        public UpdateArticleCommandHandler(IArticleRepository articleRepository)
         {
             _articleRepository = articleRepository;
-            _mapper = mapper;
         }
 
         public async Task<ArticleResponse> Handle(UpdateArticleCommand request, CancellationToken cancellationToken)

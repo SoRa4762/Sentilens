@@ -66,5 +66,14 @@ namespace api.Api.Controllers
             if (feedSource == null) return NotFound("Feed Source Not Found!");
             return Ok(feedSource);
         }
+
+        [HttpPut("{feedSourceId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<FeedSourceResponse>> UpdateFeedSourceAsync(int feedSourceId, UpdateFeedSourceCommand command)
+        {
+            command.FeedSourceId = feedSourceId;
+            var updatedFeedSource = await _mediator.Send(command);
+            return updatedFeedSource;
+        }
     }
 }

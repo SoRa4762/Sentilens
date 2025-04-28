@@ -16,6 +16,11 @@ namespace api.Application.Mappers.FeedSourceMapper
         {
             CreateMap<FeedSource, FeedSourceResponse>().ReverseMap();
             CreateMap<FeedSource, CreateFeedSourceCommand>().ReverseMap();
+            CreateMap<UpdateFeedSourceCommand, FeedSource>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember)=>
+                srcMember != null
+                ));
         }
     }
 }

@@ -76,7 +76,6 @@ namespace api.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<ArticleResponse>> UpdateArticleAsync(int articleId, [FromBody] UpdateArticleCommand command)
         {
-            command.ArticleId = articleId;
             var article = await _mediator.Send(command);
             return Ok(article);
         }
