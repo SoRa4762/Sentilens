@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.API\\api.Api.csproj": {}
+    "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Api\\api.Api.csproj": {}
   },
   "projects": {
-    "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.API\\api.Api.csproj": {
+    "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Api\\api.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.API\\api.Api.csproj",
+        "projectUniqueName": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Api\\api.Api.csproj",
         "projectName": "api.Api",
-        "projectPath": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.API\\api.Api.csproj",
+        "projectPath": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Api\\api.Api.csproj",
         "packagesPath": "C:\\Users\\sonam\\.nuget\\packages\\",
-        "outputPath": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.API\\obj\\",
+        "outputPath": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

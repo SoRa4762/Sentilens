@@ -16,7 +16,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
-
 // configuring the controllers and swagger
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -60,9 +59,40 @@ builder.Services.AddHostedService<FeedAggregatorService>();
 //builder.Services.AddScoped<IFeedFetcher, FeedFetcher>(); - remove it, replaced XML reader with HttpClient so yeah!
 
 // Http Client
-//builder.Services.AddHttpClient<IFeedFetcher, FeedFetcher>
+builder.Services.AddHttpClient<IFeedFetcher, FeedFetcher>(client =>
+{
+    client.DefaultRequestHeaders.UserAgent.ParseAdd("MyNewsAggregator/1.0");
+    client.Timeout = TimeSpan.FromSeconds(30);
+});
+
+// CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
 
 var app = builder.Build();
+
+// seed data
+using (var scope = app.Services.CreateScope()){
+    var services = scope.ServiceProvider;
+    try
+    {
+        var dbContext = services.GetRequiredService<AppDbContext>();
+        await dbContext.SeedFeedSourcesAsync();
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while seeding to the database.");
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
