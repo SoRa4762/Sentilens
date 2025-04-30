@@ -39,7 +39,7 @@ namespace api.Infrastructure.Services
                     var stream = await response.Content.ReadAsStreamAsync();
 
                     // Parse the RSS feed using SyndicationFeed
-                    var reader = XmlReader.Create(stream);
+                    using var reader = XmlReader.Create(stream);
                     var feed = SyndicationFeed.Load(reader);
 
                     // Map to Article entities - manually
@@ -51,7 +51,6 @@ namespace api.Infrastructure.Services
                         PublishedAt = item.PublishDate.UtcDateTime,
                         FeedSourceId = feedSource.Id,
                     }).ToList();
-
                     await SaveArticleAsync(articles);
                 }
                 catch (Exception ex)
