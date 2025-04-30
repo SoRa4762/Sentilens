@@ -9,12 +9,12 @@ using api.Core.Interfaces;
 using api.Infrastructure.Repositories;
 using Asp.Versioning;
 using api.Application.Handlers.ArticleHandlers;
+using api.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-
 
 // configuring the controllers and swagger
 builder.Services.AddControllers();
@@ -47,15 +47,52 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // configuring AutoMappers and MediatR
 builder.Services.AddAutoMapper(typeof(Program));
-// use this if the cfg does not have RegisterServicesFromAssembly, unavailable to MediatR version below 12
-//builder.Services.AddMediatR(typeof(CreateArticleCommandHandler).Assembly);
+//builder.Services.AddMediatR(typeof(CreateArticleCommandHandler).Assembly); -> use this if the cfg does not have RegisterServicesFromAssembly, unavailable to MediatR version below 12
 builder.Services.AddMediatR(cfg =>
   cfg.RegisterServicesFromAssembly(typeof(CreateArticleCommandHandler).Assembly));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>)); // service type and implementation type
 builder.Services.AddTransient<IArticleRepository, ArticleRepository>(); // adds transient service of type specified in interface to implementation type specified in repositories
 builder.Services.AddTransient<IFeedSourceRepository, FeedSourceRepository>();
 
+// services
+builder.Services.AddHostedService<FeedAggregatorService>();
+//builder.Services.AddScoped<IFeedFetcher, FeedFetcher>(); - remove it, replaced XML reader with HttpClient so yeah!
+
+// Http Client
+builder.Services.AddHttpClient<IFeedFetcher, FeedFetcher>(client =>
+{
+    client.DefaultRequestHeaders.UserAgent.ParseAdd("MyNewsAggregator/1.0");
+    client.Timeout = TimeSpan.FromSeconds(30);
+});
+
+// CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
+
 var app = builder.Build();
+
+// seed data
+using (var scope = app.Services.CreateScope()){
+    var services = scope.ServiceProvider;
+    try
+    {
+        var dbContext = services.GetRequiredService<AppDbContext>();
+        await dbContext.SeedFeedSourcesAsync();
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while seeding to the database.");
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
