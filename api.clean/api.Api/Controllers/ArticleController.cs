@@ -1,6 +1,5 @@
 ﻿using api.Api.Controllers.Base; // without inheriting this class, the controller won't be recognized as a controller, you also get the error: non-invokable member Ok called as a method
 using api.Application.Commands.ArticleCommands;
-using api.Application.Mappers.ArticleMappers;
 using api.Application.Queries.ArticleQueries;
 using api.Application.Responses;
 using MediatR;
@@ -14,6 +13,15 @@ namespace api.Api.Controllers
         public ArticleController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<bool>> ExistsByUrlAsync(string articleUrl)
+        {
+            var query = new ExistsByUrlQuery(articleUrl);
+            var exists = await _mediator.Send(query);
+            return Ok(exists);
         }
 
         [HttpGet("all")]

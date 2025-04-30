@@ -9,6 +9,7 @@ using api.Core.Interfaces;
 using api.Infrastructure.Repositories;
 using Asp.Versioning;
 using api.Application.Handlers.ArticleHandlers;
+using api.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,13 +48,19 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // configuring AutoMappers and MediatR
 builder.Services.AddAutoMapper(typeof(Program));
-// use this if the cfg does not have RegisterServicesFromAssembly, unavailable to MediatR version below 12
-//builder.Services.AddMediatR(typeof(CreateArticleCommandHandler).Assembly);
+//builder.Services.AddMediatR(typeof(CreateArticleCommandHandler).Assembly); -> use this if the cfg does not have RegisterServicesFromAssembly, unavailable to MediatR version below 12
 builder.Services.AddMediatR(cfg =>
   cfg.RegisterServicesFromAssembly(typeof(CreateArticleCommandHandler).Assembly));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>)); // service type and implementation type
 builder.Services.AddTransient<IArticleRepository, ArticleRepository>(); // adds transient service of type specified in interface to implementation type specified in repositories
 builder.Services.AddTransient<IFeedSourceRepository, FeedSourceRepository>();
+
+// services
+builder.Services.AddHostedService<FeedAggregatorService>();
+//builder.Services.AddScoped<IFeedFetcher, FeedFetcher>(); - remove it, replaced XML reader with HttpClient so yeah!
+
+// Http Client
+//builder.Services.AddHttpClient<IFeedFetcher, FeedFetcher>
 
 var app = builder.Build();
 

@@ -21,6 +21,11 @@ namespace api.Infrastructure.Repositories
 
         public ArticleRepository(AppDbContext context) : base(context) { }
 
+        public async Task<bool> ExistsByUrlAsync(string url)
+        {
+            return await _context.Article.AnyAsync(a => a.Url == url);
+        }
+
         public async Task<IReadOnlyList<Article>> GetAllByFeedSourceIdAsync(int feedSourceId)
         {
             return await _context.Article

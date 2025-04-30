@@ -10,6 +10,7 @@ namespace api.Core.Interfaces
 {
     public interface IArticleRepository : IRepository<Article>
     {
+        Task<bool> ExistsByUrlAsync(string url);
         Task<IReadOnlyList<Article>> GetAllByFeedSourceIdAsync(int feedSourceId);
         Task<IReadOnlyList<Article>> GetAllByDateRangeAsync(DateTime startDate, DateTime endDate);
         Task<IReadOnlyList<Article>> GetAllByFeedSourceIdAndDateRangeAsync(int feedSourceId, DateTime startDate, DateTime endDate);
