@@ -9,7 +9,7 @@ namespace api.Application.Responses
 {
     public class FeedSourceResponse
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Url { get; set; } = string.Empty;
         public string? Description { get; set; } = string.Empty;
@@ -18,5 +18,6 @@ namespace api.Application.Responses
         public string? Category { get; set; } = string.Empty;
         public bool IsActive { get; set; }
         public List<Article>? Articles { get; set; }
+        public List<FeedSourceTopic>? FeedSourceTopics { get; set; }
     }
 }

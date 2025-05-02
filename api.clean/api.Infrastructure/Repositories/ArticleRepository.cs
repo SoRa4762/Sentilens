@@ -49,5 +49,13 @@ namespace api.Infrastructure.Repositories
                             a.PublishedAt <= endDate)
                 .ToListAsync();
         }
+
+        public async Task<IReadOnlyList<Article>> GetAllArticlesWithFeedSource()
+        {
+            return await _context.Article
+                .Include(fs => fs.FeedSource)
+                .ThenInclude(fs => fs.FeedSourceTopics)
+                .ToListAsync();
+        }
     }
 }

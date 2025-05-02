@@ -13,5 +13,6 @@ namespace api.Core.Interfaces
         Task<IReadOnlyList<FeedSource>> GetAllByUserTopicIdAsync(int userTopicId);
         Task<IReadOnlyList<FeedSource>> GetAllByDateRangeAsync(DateTime startDate, DateTime endDate);
         Task<IReadOnlyList<FeedSource>> GetAllByUserTopicIdAndDateRangeAsync(int userTopicId, DateTime startDate, DateTime endDate);
+        Task<IReadOnlyList<FeedSource>> GetAllFeedSourcesWithArticles();
     }
 }

@@ -16,13 +16,22 @@ namespace api.Api.Controllers
             _mediator = mediator;
         }
 
+        //[HttpGet("all")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //public async Task<ActionResult<FeedSourceResponse>> GetAllFeedSourceAsync()
+        //{
+        //    var query = new GetAllFeedSourcesQuery();
+        //    var feedSourceList = await _mediator.Send(query);
+        //    return Ok(feedSourceList);
+        //}
+
         [HttpGet("all")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<FeedSourceResponse>> GetAllFeedSourceAsync()
+        public async Task<ActionResult<FeedSourceResponse>> GetAllFeedSourcesWithArticles()
         {
-            var query = new GetAllFeedSourceQuery();
-            var feedSourceList = await _mediator.Send(query);
-            return Ok(feedSourceList);
+            var query = new GetAllFeedSourcesWithArticlesQuery();
+            var feedSources = await _mediator.Send(query);
+            return Ok(feedSources);
         }
 
         [HttpGet("{feedSourceId}")]
