@@ -48,6 +48,15 @@ namespace api.Api.Controllers
             return Ok(articles);
         }
 
+        //[HttpGet("all")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //public async Task<ActionResult<IReadOnlyList<ArticleResponse>>> GetAllArticlesWithFeedSource()
+        //{
+        //    var query = new GetAllArticlesWithFeedSourceQuery();
+        //    var articles = await _mediator.Send(query);
+        //    return Ok(articles);
+        //}
+
         [HttpGet("{feedSourceId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

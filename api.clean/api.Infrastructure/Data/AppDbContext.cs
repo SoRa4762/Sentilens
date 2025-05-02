@@ -14,7 +14,7 @@ namespace api.Infrastructure.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<User> Users { get; set; }
+        //public override DbSet<User> Users { get; set; }
         public DbSet<UserTopic> UserTopics { get; set; }
         public DbSet<Topic> Topics { get; set; }
         public DbSet<Article> Article { get; set; }
@@ -59,6 +59,13 @@ namespace api.Infrastructure.Data
                 .HasOne(ut => ut.Topic)
                 .WithMany(t => t.UserTopics)
                 .HasForeignKey(ut => ut.TopicId);
+
+            List<IdentityRole> identityRoles = new List<IdentityRole>
+            {
+                new IdentityRole() { Name = "Admin", NormalizedName = "ADMIN" },
+                new IdentityRole() { Name = "User", NormalizedName = "USER" },
+            };
+            modelBuilder.Entity<IdentityRole>().HasData(identityRoles);
         }
     }
 }

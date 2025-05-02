@@ -9,7 +9,8 @@ using api.Core.Interfaces;
 using api.Infrastructure.Repositories;
 using Asp.Versioning;
 using api.Application.Handlers.ArticleHandlers;
-using api.Infrastructure.Services;
+using api.Infrastructure.Services.FeedSourceServices;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -76,6 +77,14 @@ builder.Services.AddCors(options =>
                    .AllowAnyHeader();
         });
 });
+
+// Ignore JSON object cycle
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        options.JsonSerializerOptions.PropertyNamingPolicy = null; // Optional: to keep original property names
+    });
 
 var app = builder.Build();
 

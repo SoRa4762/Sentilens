@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace api.Application.Queries.FeedSourceQueries
 {
-    public class GetAllFeedSourceQuery : IRequest<IReadOnlyList<FeedSourceResponse>>
+    public class GetAllFeedSourcesWithArticlesQuery : IRequest<IReadOnlyList<FeedSourceResponse>>
     {
     }
 }

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace api.Infrastructure.Services
+namespace api.Infrastructure.Services.FeedSourceServices
 {
     public class FeedAggregatorService : BackgroundService
     {
