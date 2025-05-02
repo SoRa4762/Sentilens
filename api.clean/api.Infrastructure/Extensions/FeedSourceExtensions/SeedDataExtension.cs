@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace api.Infrastructure.Services.FeedSourceServices
+namespace api.Infrastructure.Extensions.FeedSourceExtensions
 {
     public static class SeedDataExtension
     {

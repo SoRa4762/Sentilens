@@ -1783,8 +1783,10 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.15",
           "Microsoft.AspNetCore.Identity": "2.3.1",
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.15"
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.15",
+          "System.IdentityModel.Tokens.Jwt": "8.9.0"
         },
         "compile": {
           "bin/placeholder/api.Core.dll": {}
@@ -4247,12 +4249,10 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.15",
       "Microsoft.EntityFrameworkCore >= 8.0.15",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.15",
       "Microsoft.Extensions.Http >= 9.0.4",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.11",
-      "System.IdentityModel.Tokens.Jwt >= 8.9.0",
       "System.ServiceModel.Syndication >= 9.0.4",
       "api.Application >= 1.0.0"
     ]
@@ -4311,10 +4311,6 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
-          "Microsoft.AspNetCore.Authentication.JwtBearer": {
-            "target": "Package",
-            "version": "[8.0.15, )"
-          },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[8.0.15, )"
@@ -4332,10 +4328,6 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": {
             "target": "Package",
             "version": "[8.0.11, )"
-          },
-          "System.IdentityModel.Tokens.Jwt": {
-            "target": "Package",
-            "version": "[8.9.0, )"
           },
           "System.ServiceModel.Syndication": {
             "target": "Package",

@@ -1,7 +1,6 @@
 using Microsoft.OpenApi.Models; // Add this using directive for OpenApiInfo
 using api.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore; // Add this using directive for AppDbContext
-//using AutoMapper; no need actually
 using MediatR;
 using api.Core.Interfaces.Base;
 using api.Infrastructure.Repositories.Base;
@@ -9,27 +8,55 @@ using api.Core.Interfaces;
 using api.Infrastructure.Repositories;
 using Asp.Versioning;
 using api.Application.Handlers.ArticleHandlers;
-using api.Infrastructure.Services.FeedSourceServices;
 using System.Text.Json.Serialization;
+using api.Core.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using api.Core.Services.AuthenticationServices;
+using api.Infrastructure.Extensions.FeedSourceExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
-// configuring the controllers and swagger
+// controllers and swagger
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen( c =>
+builder.Services.AddSwaggerGen( option =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo()
+    option.SwaggerDoc("v1", new OpenApiInfo()
     {
         Title = "Sentilens V1",
         Version = "v1",
     });
+    option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Description = "Please enter a valid token",
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = "Bearer"
+    });
+    option.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[]{ }
+        }
+    }); 
 });
 
-// configuring the API versioning
+// API versioning
 builder.Services.AddApiVersioning(options =>
 {
     options.DefaultApiVersion = new ApiVersion(1.0);
@@ -42,11 +69,46 @@ builder.Services.AddApiVersioning(options =>
     options.SubstituteApiVersionInUrl = true;
 });
 
-// configuring the connection string
+// connection string
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// configuring AutoMappers and MediatR
+// authentication
+builder.Services.AddIdentity<User, IdentityRole>(options =>
+{
+    options.Password.RequireDigit = true;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequiredLength = 8;
+})
+    .AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme =
+    options.DefaultChallengeScheme =
+    options.DefaultForbidScheme =
+    options.DefaultScheme =
+    options.DefaultSignInScheme =
+    options.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidateAudience = true,
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(
+                System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SigningKey"])
+            )
+        };
+    });
+
+// AutoMappers and MediatR
 builder.Services.AddAutoMapper(typeof(Program));
 //builder.Services.AddMediatR(typeof(CreateArticleCommandHandler).Assembly); -> use this if the cfg does not have RegisterServicesFromAssembly, unavailable to MediatR version below 12
 builder.Services.AddMediatR(cfg =>
@@ -54,8 +116,9 @@ builder.Services.AddMediatR(cfg =>
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>)); // service type and implementation type
 builder.Services.AddTransient<IArticleRepository, ArticleRepository>(); // adds transient service of type specified in interface to implementation type specified in repositories
 builder.Services.AddTransient<IFeedSourceRepository, FeedSourceRepository>();
+builder.Services.AddTransient<ITokenService, TokenService>();
 
-// services
+// EXTENSIONS
 builder.Services.AddHostedService<FeedAggregatorService>();
 //builder.Services.AddScoped<IFeedFetcher, FeedFetcher>(); - remove it, replaced XML reader with HttpClient so yeah!
 
@@ -89,7 +152,8 @@ builder.Services.AddControllers()
 var app = builder.Build();
 
 // seed data
-using (var scope = app.Services.CreateScope()){
+using (var scope = app.Services.CreateScope())
+{
     var services = scope.ServiceProvider;
     try
     {
@@ -112,6 +176,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseRouting();
 app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
