@@ -16,15 +16,6 @@ namespace api.Api.Controllers
             _mediator = mediator;
         }
 
-        //[HttpGet("all")]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //public async Task<ActionResult<FeedSourceResponse>> GetAllFeedSourceAsync()
-        //{
-        //    var query = new GetAllFeedSourcesQuery();
-        //    var feedSourceList = await _mediator.Send(query);
-        //    return Ok(feedSourceList);
-        //}
-
         [HttpGet("all")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<FeedSourceResponse>> GetAllFeedSourcesWithArticles()
@@ -36,11 +27,30 @@ namespace api.Api.Controllers
 
         [HttpGet("{feedSourceId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<FeedSourceResponse>> GetFeedSourceByIdAsync(int feedSourceId)
+        public async Task<ActionResult<FeedSourceResponse>> GetFeedSourceWithArticlesByIdAsync(int feedSourceId)
         {
-            var query = new GetFeedSourceByIdQuery(feedSourceId);
+            var query = new GetFeedSourceWithArticlesByIdQuery(feedSourceId);
             var feedSource = await _mediator.Send(query);
             return Ok(feedSource);
+        }
+
+        [HttpDelete("{feedSourceId}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<FeedSourceResponse>> DeleteFeedSourceById(int feedSourceId)
+        {
+            var query = new DeleteFeedSourceByIdQuery(feedSourceId);
+            var feedSource = await _mediator.Send(query);
+            if (feedSource == null) return NotFound("Feed Source Not Found!");
+            return Ok(feedSource);
+        }
+
+        [HttpPut("{feedSourceId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<FeedSourceResponse>> UpdateFeedSourceAsync(int feedSourceId, UpdateFeedSourceCommand command)
+        {
+            command.FeedSourceId = feedSourceId;
+            var updatedFeedSource = await _mediator.Send(command);
+            return updatedFeedSource;
         }
 
         [HttpPost]
@@ -66,23 +76,25 @@ namespace api.Api.Controllers
          * [HttpDelete("{FeedSourceId}")] and DeleteFeedSourceIdById(int feedSourceId) are not the same
          * you get the error `"{feedSourceId}" does not exist/invalid` (kinda) on Swagger
          */
-        [HttpDelete("{feedSourceId}")]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<FeedSourceResponse>> DeleteFeedSourceById(int feedSourceId)
-        {
-            var query = new DeleteFeedSourceByIdQuery(feedSourceId);
-            var feedSource = await _mediator.Send(query);
-            if (feedSource == null) return NotFound("Feed Source Not Found!");
-            return Ok(feedSource);
-        }
 
-        [HttpPut("{feedSourceId}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<FeedSourceResponse>> UpdateFeedSourceAsync(int feedSourceId, UpdateFeedSourceCommand command)
-        {
-            command.FeedSourceId = feedSourceId;
-            var updatedFeedSource = await _mediator.Send(command);
-            return updatedFeedSource;
-        }
+        // New changes implemented so staked these controllers
+
+        //[HttpGet("all")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //public async Task<ActionResult<FeedSourceResponse>> GetAllFeedSourceAsync()
+        //{
+        //    var query = new GetAllFeedSourcesQuery();
+        //    var feedSourceList = await _mediator.Send(query);
+        //    return Ok(feedSourceList);
+        //}
+
+        //[HttpGet("{feedSourceId}")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //public async Task<ActionResult<FeedSourceResponse>> GetFeedSourceByIdAsync(int feedSourceId)
+        //{
+        //    var query = new GetFeedSourceByIdQuery(feedSourceId);
+        //    var feedSource = await _mediator.Send(query);
+        //    return Ok(feedSource);
+        //}
     }
 }

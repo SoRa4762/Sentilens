@@ -18,15 +18,18 @@ namespace api.Application.Handlers.FeedSourceHandlers
         {
             _feedSourceRepo = feedSourceRepo;
         }
+        
         public async Task<IReadOnlyList<FeedSourceResponse>> Handle(GetAllFeedSourcesWithArticlesQuery request, CancellationToken cancellationToken)
         {
             try
             {
                 var feedSourcesArticles = await _feedSourceRepo.GetAllFeedSourcesWithArticles();
                 return FeedSourceMapper.Mapper.Map<IReadOnlyList<FeedSourceResponse>>(feedSourcesArticles);
-            } catch (Exception ex){
+            }
+            catch (Exception ex)
+            {
                 throw new Exception("Error while getting all feed sources with articles", ex);
             }
-        }
+        }   
     }
 }
