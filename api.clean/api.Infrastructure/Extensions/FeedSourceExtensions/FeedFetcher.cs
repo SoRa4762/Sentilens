@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.ServiceModel.Syndication;
 
-namespace api.Infrastructure.Services.FeedSourceServices
+namespace api.Infrastructure.Extensions.FeedSourceExtensions
 {
     public class FeedFetcher : IFeedFetcher
     {
