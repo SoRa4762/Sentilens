@@ -4,10 +4,12 @@ using api.Application.Responses;
 using api.Core.Interfaces;
 using MediatR;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace api.Application.Handlers.ArticleHandlers
 {
@@ -22,7 +24,9 @@ namespace api.Application.Handlers.ArticleHandlers
         public async Task<IReadOnlyList<ArticleResponse>> Handle(GetAllArticlesQuery request, CancellationToken cancellationToken)
         {
             var articleLists = await _articleRepo.GetAllAsync();
-            var mappedArticleLists = ArticleMapper.Mapper.Map<IReadOnlyList<ArticleResponse>>(articleLists);
+            var SkipNumber = (request.pageNumber - 1) * request.pageSize;
+            var paginatedArticlesLists = articleLists.Skip(SkipNumber).Take(request.pageSize);
+            var mappedArticleLists = ArticleMapper.Mapper.Map<IReadOnlyList<ArticleResponse>>(paginatedArticlesLists);
             return mappedArticleLists;
         }
     }

@@ -44,8 +44,39 @@ namespace api.Infrastructure.Repositories
         public async Task<IReadOnlyList<FeedSource>> GetAllFeedSourcesWithArticles()
         {
             return await _context.FeedSource
-                .Include(a => a.Articles)
+                .Select(fs => new FeedSource
+                {
+                    Name = fs.Name,
+                    Url = fs.Url,
+                    Description = fs.Description,
+                    Language = fs.Language,
+                    Category = fs.Category,
+                    IsActive = fs.IsActive,
+                    Articles = fs.Articles
+                    .OrderByDescending(a => a.PublishedAt)
+                    .Take(7)
+                    .ToList()
+                })
                 .ToListAsync();
+        }
+
+        public async Task<FeedSource> GetFeedSourceWithArticlesById(int FeedSourceId)
+        {
+            return await _context.FeedSource
+                .Select(fs => new FeedSource
+                {
+                    Name = fs.Name,
+                    Url = fs.Url,
+                    Description = fs.Description,
+                    Language = fs.Language,
+                    Category = fs.Category,
+                    IsActive = fs.IsActive,
+                    Articles = fs.Articles
+                    .OrderByDescending(a => a.PublishedAt)
+                    .Take(7)
+                    .ToList()
+                })
+                .FirstOrDefaultAsync(fs => fs.Id == FeedSourceId);
         }
     }
 }

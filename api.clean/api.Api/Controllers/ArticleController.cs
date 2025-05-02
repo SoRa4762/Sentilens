@@ -27,7 +27,7 @@ namespace api.Api.Controllers
         [HttpGet("all")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)] // if you added this too, you will get two data displayed: 1. for the 200OK, 2. for the 404NotFound
-        public async Task<ActionResult<IReadOnlyList<ArticleResponse>>> GetAllAsync()
+        public async Task<ActionResult<IReadOnlyList<ArticleResponse>>> GetAllAsync(int pageNumber, int pageSize)
         {
             /*  
              *  I don't have a query for this... should I create one?
@@ -43,7 +43,7 @@ namespace api.Api.Controllers
              * return Ok(articles);
              */
 
-            var query = new GetAllArticlesQuery();
+            var query = new GetAllArticlesQuery(pageNumber);
             var articles = await _mediator.Send(query);
             return Ok(articles);
         }
