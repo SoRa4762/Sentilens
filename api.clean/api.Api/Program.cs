@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using api.Core.Services.AuthenticationServices;
 using api.Infrastructure.Extensions.FeedSourceExtensions;
+using FluentValidation;
+using api.Application.Commands.UserCommands;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -116,7 +118,12 @@ builder.Services.AddMediatR(cfg =>
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>)); // service type and implementation type
 builder.Services.AddTransient<IArticleRepository, ArticleRepository>(); // adds transient service of type specified in interface to implementation type specified in repositories
 builder.Services.AddTransient<IFeedSourceRepository, FeedSourceRepository>();
+
+// Authentication
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddTransient<IValidator<RegisterUserCommand>, RegisterUserCommandValidator>();
+builder.Services.AddTransient<IValidator<LoginUserCommand>, LoginUserCommandValidator>();
 
 // EXTENSIONS
 builder.Services.AddHostedService<FeedAggregatorService>();

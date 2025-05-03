@@ -22,7 +22,7 @@ namespace api.Core.Services.AuthenticationServices
             _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:SigningKey"]));
         }
 
-        public string CreateToken(User user)
+        public string GenerateToken(User user)
         {
             var claims = new List<Claim>
             {

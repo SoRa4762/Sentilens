@@ -1,4 +1,5 @@
 ﻿using api.Application.Responses;
+using api.Core.Utilities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,7 @@ using System.Threading.Tasks;
 
 namespace api.Application.Commands.UserCommands
 {
-    public class RegisterUserCommand : IRequest<UserResponse>
-    {
-        public string UserName { get; set; } = String.Empty;
-        public string Email { get; set; } = String.Empty;
-        public string Password { get; set; } = String.Empty;
-    }
+    public record RegisterUserCommand(
+        string Username, string Email, string Password
+    ) : IRequest<Result<UserResponse>>;
 }

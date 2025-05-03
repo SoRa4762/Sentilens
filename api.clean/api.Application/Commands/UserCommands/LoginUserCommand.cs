@@ -1,4 +1,5 @@
 ﻿using api.Application.Responses;
+using api.Core.Utilities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,9 @@ using System.Threading.Tasks;
 
 namespace api.Application.Commands.UserCommands
 {
-    public class LoginUserCommand : IRequest<UserResponse>
-    {
-        //[Required]
-        public string Email { get; set; } = String.Empty;
-        public string Password { get; set; } = String.Empty;
-        public bool RememberMe { get; set; } = false;
-    }
+    public record LoginUserCommand(
+        string Email,
+        string Password,
+        bool RememberMe
+    ) : IRequest<Result<UserResponse>>;
 }

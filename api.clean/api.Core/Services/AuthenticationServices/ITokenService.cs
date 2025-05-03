@@ -9,6 +9,6 @@ namespace api.Core.Services.AuthenticationServices
 {
     public interface ITokenService
     {
-        string CreateToken(User user);
+        string GenerateToken(User user);
     }
 }

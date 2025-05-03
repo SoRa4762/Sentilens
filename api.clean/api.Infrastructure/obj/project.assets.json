@@ -1770,6 +1770,7 @@
           "AutoMapper": "14.0.0",
           "FluentValidation": "11.11.0",
           "MediatR": "12.5.0",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.15",
           "api.Core": "1.0.0"
         },
         "compile": {

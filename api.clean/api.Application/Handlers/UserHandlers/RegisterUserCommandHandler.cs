@@ -1,10 +1,12 @@
 ﻿using api.Application.Commands.UserCommands;
-using api.Application.Mappers.UserMapper;
 using api.Application.Responses;
 using api.Core.Entities;
+using api.Core.Interfaces;
 using api.Core.Services.AuthenticationServices;
+using api.Core.Utilities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,48 +15,39 @@ using System.Threading.Tasks;
 
 namespace api.Application.Handlers.UserHandlers
 {
-    public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, UserResponse>
+    public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, Result<UserResponse>>
     {
-        private readonly UserManager<User> _userManager; // to create users, to add roles, to find users
+        private readonly IUserRepository _userRepository;
         private readonly ITokenService _tokenService; // to create tokens if user is authenticated or created
 
-        public RegisterUserCommandHandler(UserManager<User> userManager, ITokenService tokenService)
+        public RegisterUserCommandHandler(IUserRepository userRepository, ITokenService tokenService)
         {
-            _userManager = userManager;
+            _userRepository = userRepository;
             _tokenService = tokenService;
         }
 
-        public async Task<UserResponse> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+        public async Task<Result<UserResponse>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
-            try
-            {
-                var user = UserMapper.Mapper.Map<User>(request);
-                var registerUser = await _userManager.CreateAsync(user, request.Password);
+            var existingUser = await _userRepository.GetByEmailAsync(request.Email);
+            if (existingUser != null)
+                return Result<UserResponse>.Failure("User already exists");
 
-                if (registerUser.Succeeded)
-                {
-                    var roleResult = await _userManager.AddToRoleAsync(user, "User");
-                    if (roleResult.Succeeded)
-                    {
-                        var token = _tokenService.CreateToken(user);
-                        var mappedUser = UserMapper.Mapper.Map<UserResponse>(user);
-                        mappedUser.Token = token;
-                        return mappedUser;
-                    }
-                    else
-                    {
-                        throw new Exception("Error adding role to user");
-                    }
-                }
-                else
-                {
-                    throw new Exception("Error creating user");
-                }
-            }
-            catch (Exception ex)
+            var user = new User { Email = request.Email, UserName = request.Username };
+            var result = await _userRepository.CreateUserAsync(user, request.Password);
+            
+            if (!result.Succeeded)
             {
-                throw new Exception("Error mapping user", ex);
+                var errorString = string.Join("\n", result.Errors.Select(e => e.Description));
+                return Result<UserResponse>.Failure(errorString);
             }
+
+            var userResponse = new UserResponse(_tokenService.GenerateToken(user)){
+                Id = user.Id,
+                Email = user.Email,
+                UserName = user.UserName
+            };
+
+            return Result<UserResponse>.Success(userResponse);
         }
     }
 }
