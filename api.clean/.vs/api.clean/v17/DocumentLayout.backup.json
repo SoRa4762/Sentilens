@@ -3,52 +3,12 @@
   "WorkspaceRootPath": "D:\\Web Development\\Self\\Sentilens\\api.clean\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EB3FCCFE-5F9D-4D96-821E-9D39FF7B1545}|api.Application\\api.Application.csproj|d:\\web development\\self\\sentilens\\api.clean\\api.application\\handlers\\userhandlers\\loginusercommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EB3FCCFE-5F9D-4D96-821E-9D39FF7B1545}|api.Application\\api.Application.csproj|solutionrelative:api.application\\handlers\\userhandlers\\loginusercommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8EDA1D71-5E4C-46A2-AA95-9B99BF1A4551}|api.Api\\api.Api.csproj|d:\\web development\\self\\sentilens\\api.clean\\api.api\\controllers\\articlecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EDA1D71-5E4C-46A2-AA95-9B99BF1A4551}|api.Api\\api.Api.csproj|solutionrelative:api.api\\controllers\\articlecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EB3FCCFE-5F9D-4D96-821E-9D39FF7B1545}|api.Application\\api.Application.csproj|d:\\web development\\self\\sentilens\\api.clean\\api.application\\responses\\userresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EB3FCCFE-5F9D-4D96-821E-9D39FF7B1545}|api.Application\\api.Application.csproj|solutionrelative:api.application\\responses\\userresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EB3FCCFE-5F9D-4D96-821E-9D39FF7B1545}|api.Application\\api.Application.csproj|d:\\web development\\self\\sentilens\\api.clean\\api.application\\commands\\usercommands\\registerusercommandvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EB3FCCFE-5F9D-4D96-821E-9D39FF7B1545}|api.Application\\api.Application.csproj|solutionrelative:api.application\\commands\\usercommands\\registerusercommandvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8EDA1D71-5E4C-46A2-AA95-9B99BF1A4551}|api.Api\\api.Api.csproj|d:\\web development\\self\\sentilens\\api.clean\\api.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8EDA1D71-5E4C-46A2-AA95-9B99BF1A4551}|api.Api\\api.Api.csproj|solutionrelative:api.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EB3FCCFE-5F9D-4D96-821E-9D39FF7B1545}|api.Application\\api.Application.csproj|d:\\web development\\self\\sentilens\\api.clean\\api.application\\commands\\usercommands\\loginusercommandvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EB3FCCFE-5F9D-4D96-821E-9D39FF7B1545}|api.Application\\api.Application.csproj|solutionrelative:api.application\\commands\\usercommands\\loginusercommandvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EB3FCCFE-5F9D-4D96-821E-9D39FF7B1545}|api.Application\\api.Application.csproj|d:\\web development\\self\\sentilens\\api.clean\\api.application\\handlers\\userhandlers\\registerusercommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EB3FCCFE-5F9D-4D96-821E-9D39FF7B1545}|api.Application\\api.Application.csproj|solutionrelative:api.application\\handlers\\userhandlers\\registerusercommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8EDA1D71-5E4C-46A2-AA95-9B99BF1A4551}|api.Api\\api.Api.csproj|d:\\web development\\self\\sentilens\\api.clean\\api.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8EDA1D71-5E4C-46A2-AA95-9B99BF1A4551}|api.Api\\api.Api.csproj|solutionrelative:api.api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7EF71464-887F-4520-A196-9FC4BF1BD3A9}|api.Core\\api.Core.csproj|d:\\web development\\self\\sentilens\\api.clean\\api.core\\utilities\\result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7EF71464-887F-4520-A196-9FC4BF1BD3A9}|api.Core\\api.Core.csproj|solutionrelative:api.core\\utilities\\result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7EF71464-887F-4520-A196-9FC4BF1BD3A9}|api.Core\\api.Core.csproj|d:\\web development\\self\\sentilens\\api.clean\\api.core\\interfaces\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7EF71464-887F-4520-A196-9FC4BF1BD3A9}|api.Core\\api.Core.csproj|solutionrelative:api.core\\interfaces\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7EF71464-887F-4520-A196-9FC4BF1BD3A9}|api.Core\\api.Core.csproj|d:\\web development\\self\\sentilens\\api.clean\\api.core\\services\\authenticationservices\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7EF71464-887F-4520-A196-9FC4BF1BD3A9}|api.Core\\api.Core.csproj|solutionrelative:api.core\\services\\authenticationservices\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{81EC46C3-A51A-4894-956C-82FD5665BFC6}|api.Infrastructure\\api.Infrastructure.csproj|d:\\web development\\self\\sentilens\\api.clean\\api.infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{81EC46C3-A51A-4894-956C-82FD5665BFC6}|api.Infrastructure\\api.Infrastructure.csproj|solutionrelative:api.infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7EF71464-887F-4520-A196-9FC4BF1BD3A9}|api.Core\\api.Core.csproj|d:\\web development\\self\\sentilens\\api.clean\\api.core\\services\\authenticationservices\\itokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7EF71464-887F-4520-A196-9FC4BF1BD3A9}|api.Core\\api.Core.csproj|solutionrelative:api.core\\services\\authenticationservices\\itokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8EDA1D71-5E4C-46A2-AA95-9B99BF1A4551}|api.Api\\api.Api.csproj|d:\\web development\\self\\sentilens\\api.clean\\api.api\\controllers\\feedsourcecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EDA1D71-5E4C-46A2-AA95-9B99BF1A4551}|api.Api\\api.Api.csproj|solutionrelative:api.api\\controllers\\feedsourcecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,159 +34,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Result.cs",
-              "DocumentMoniker": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Core\\Utilities\\Result.cs",
-              "RelativeDocumentMoniker": "api.Core\\Utilities\\Result.cs",
-              "ToolTip": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Core\\Utilities\\Result.cs",
-              "RelativeToolTip": "api.Core\\Utilities\\Result.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABMAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "FeedSourceController.cs",
+              "DocumentMoniker": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Api\\Controllers\\FeedSourceController.cs",
+              "RelativeDocumentMoniker": "api.Api\\Controllers\\FeedSourceController.cs",
+              "ToolTip": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Api\\Controllers\\FeedSourceController.cs",
+              "RelativeToolTip": "api.Api\\Controllers\\FeedSourceController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T03:42:20.517Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Api\\Program.cs",
-              "RelativeDocumentMoniker": "api.Api\\Program.cs",
-              "ToolTip": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Api\\Program.cs",
-              "RelativeToolTip": "api.Api\\Program.cs",
-              "ViewState": "AgIAAGgAAAAAAAAAAAAiwHsAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T08:29:45.99Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "LoginUserCommandValidator.cs",
-              "DocumentMoniker": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Commands\\UserCommands\\LoginUserCommandValidator.cs",
-              "RelativeDocumentMoniker": "api.Application\\Commands\\UserCommands\\LoginUserCommandValidator.cs",
-              "ToolTip": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Commands\\UserCommands\\LoginUserCommandValidator.cs",
-              "RelativeToolTip": "api.Application\\Commands\\UserCommands\\LoginUserCommandValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAABKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T08:27:25.537Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "RegisterUserCommandValidator.cs",
-              "DocumentMoniker": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Commands\\UserCommands\\RegisterUserCommandValidator.cs",
-              "RelativeDocumentMoniker": "api.Application\\Commands\\UserCommands\\RegisterUserCommandValidator.cs",
-              "ToolTip": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Commands\\UserCommands\\RegisterUserCommandValidator.cs",
-              "RelativeToolTip": "api.Application\\Commands\\UserCommands\\RegisterUserCommandValidator.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T08:22:31.602Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Api\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "api.Api\\Controllers\\UserController.cs",
-              "ToolTip": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Api\\Controllers\\UserController.cs",
-              "RelativeToolTip": "api.Api\\Controllers\\UserController.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAYwCAAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T07:52:01.612Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "UserRepository.cs",
-              "DocumentMoniker": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Infrastructure\\Repositories\\UserRepository.cs",
-              "RelativeDocumentMoniker": "api.Infrastructure\\Repositories\\UserRepository.cs",
-              "ToolTip": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Infrastructure\\Repositories\\UserRepository.cs",
-              "RelativeToolTip": "api.Infrastructure\\Repositories\\UserRepository.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABUAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T07:43:59.508Z",
+              "WhenOpened": "2025-05-03T09:08:01.341Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "LoginUserCommandHandler.cs",
-              "DocumentMoniker": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Handlers\\UserHandlers\\LoginUserCommandHandler.cs",
-              "RelativeDocumentMoniker": "api.Application\\Handlers\\UserHandlers\\LoginUserCommandHandler.cs",
-              "ToolTip": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Handlers\\UserHandlers\\LoginUserCommandHandler.cs",
-              "RelativeToolTip": "api.Application\\Handlers\\UserHandlers\\LoginUserCommandHandler.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAQwCUAAAANAAAAAAAAAA==",
+              "Title": "ArticleController.cs",
+              "DocumentMoniker": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Api\\Controllers\\ArticleController.cs",
+              "RelativeDocumentMoniker": "api.Api\\Controllers\\ArticleController.cs",
+              "ToolTip": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Api\\Controllers\\ArticleController.cs",
+              "RelativeToolTip": "api.Api\\Controllers\\ArticleController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T04:24:01.576Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "TokenService.cs",
-              "DocumentMoniker": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Core\\Services\\AuthenticationServices\\TokenService.cs",
-              "RelativeDocumentMoniker": "api.Core\\Services\\AuthenticationServices\\TokenService.cs",
-              "ToolTip": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Core\\Services\\AuthenticationServices\\TokenService.cs",
-              "RelativeToolTip": "api.Core\\Services\\AuthenticationServices\\TokenService.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAkwCMAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T04:23:05.591Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserResponse.cs",
-              "DocumentMoniker": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Responses\\UserResponse.cs",
-              "RelativeDocumentMoniker": "api.Application\\Responses\\UserResponse.cs",
-              "ToolTip": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Responses\\UserResponse.cs",
-              "RelativeToolTip": "api.Application\\Responses\\UserResponse.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T04:10:59.985Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "RegisterUserCommandHandler.cs",
-              "DocumentMoniker": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Handlers\\UserHandlers\\RegisterUserCommandHandler.cs",
-              "RelativeDocumentMoniker": "api.Application\\Handlers\\UserHandlers\\RegisterUserCommandHandler.cs",
-              "ToolTip": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Application\\Handlers\\UserHandlers\\RegisterUserCommandHandler.cs",
-              "RelativeToolTip": "api.Application\\Handlers\\UserHandlers\\RegisterUserCommandHandler.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAA4wBcAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T04:03:15.531Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "IUserRepository.cs",
-              "DocumentMoniker": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Core\\Interfaces\\IUserRepository.cs",
-              "RelativeDocumentMoniker": "api.Core\\Interfaces\\IUserRepository.cs",
-              "ToolTip": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Core\\Interfaces\\IUserRepository.cs",
-              "RelativeToolTip": "api.Core\\Interfaces\\IUserRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T03:28:14.718Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ITokenService.cs",
-              "DocumentMoniker": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Core\\Services\\AuthenticationServices\\ITokenService.cs",
-              "RelativeDocumentMoniker": "api.Core\\Services\\AuthenticationServices\\ITokenService.cs",
-              "ToolTip": "D:\\Web Development\\Self\\Sentilens\\api.clean\\api.Core\\Services\\AuthenticationServices\\ITokenService.cs",
-              "RelativeToolTip": "api.Core\\Services\\AuthenticationServices\\ITokenService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T03:25:38.594Z",
+              "WhenOpened": "2025-05-03T09:07:18.961Z",
               "EditorCaption": ""
             }
           ]

@@ -3,6 +3,7 @@ using api.Application.Commands.ArticleCommands;
 using api.Application.Queries.ArticleQueries;
 using api.Application.Responses;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Api.Controllers
@@ -15,6 +16,7 @@ namespace api.Api.Controllers
             _mediator = mediator;
         }
 
+        //[Authorize]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<bool>> ExistsByUrlAsync(string articleUrl)
@@ -24,6 +26,7 @@ namespace api.Api.Controllers
             return Ok(exists);
         }
 
+        [Authorize]
         [HttpGet("all")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)] // if you added this too, you will get two data displayed: 1. for the 200OK, 2. for the 404NotFound
@@ -57,6 +60,7 @@ namespace api.Api.Controllers
         //    return Ok(articles);
         //}
 
+        //[Authorize]
         [HttpGet("{feedSourceId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -67,7 +71,8 @@ namespace api.Api.Controllers
             var articles = await _mediator.Send(query);
             return Ok(articles);
         }
-        
+
+        [Authorize]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<ArticleResponse>> CreateArticleAsync([FromBody] CreateArticleCommand command)
@@ -78,6 +83,7 @@ namespace api.Api.Controllers
             return Ok(article);
         }
 
+        [Authorize]
         [HttpDelete("{articleId}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ArticleResponse>> DeleteArticleById(int articleId)
@@ -89,6 +95,7 @@ namespace api.Api.Controllers
             return Ok(articleDto);
         }
 
+        [Authorize]
         [HttpPut("{articleId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<ArticleResponse>> UpdateArticleAsync(int articleId, [FromBody] UpdateArticleCommand command)

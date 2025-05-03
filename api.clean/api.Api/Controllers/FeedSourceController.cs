@@ -4,6 +4,7 @@ using api.Application.Queries.FeedSourceQueries;
 using api.Application.Responses;
 using api.Core.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Api.Controllers
@@ -16,6 +17,7 @@ namespace api.Api.Controllers
             _mediator = mediator;
         }
 
+        [Authorize]
         [HttpGet("all")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<FeedSourceResponse>> GetAllFeedSourcesWithArticles()
@@ -34,6 +36,7 @@ namespace api.Api.Controllers
             return Ok(feedSource);
         }
 
+        [Authorize]
         [HttpDelete("{feedSourceId}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<FeedSourceResponse>> DeleteFeedSourceById(int feedSourceId)
@@ -44,6 +47,7 @@ namespace api.Api.Controllers
             return Ok(feedSource);
         }
 
+        [Authorize]
         [HttpPut("{feedSourceId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<FeedSourceResponse>> UpdateFeedSourceAsync(int feedSourceId, UpdateFeedSourceCommand command)
@@ -53,6 +57,7 @@ namespace api.Api.Controllers
             return updatedFeedSource;
         }
 
+        [Authorize]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<FeedSourceResponse>> CreateFeedSourceAsync(CreateFeedSourceCommand command)
