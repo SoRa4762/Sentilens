@@ -116,7 +116,7 @@ builder.Services.AddMediatR(cfg =>
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>)); // service type and implementation type
 builder.Services.AddTransient<IArticleRepository, ArticleRepository>(); // adds transient service of type specified in interface to implementation type specified in repositories
 builder.Services.AddTransient<IFeedSourceRepository, FeedSourceRepository>();
-builder.Services.AddTransient<ITokenService, TokenService>();
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 // EXTENSIONS
 builder.Services.AddHostedService<FeedAggregatorService>();

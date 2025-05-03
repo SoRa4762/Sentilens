@@ -58,11 +58,19 @@ namespace api.Infrastructure.Repositories
                     .ToList()
                 })
                 .ToListAsync();
+
+            // not the desired result!
+            //return await _context.FeedSource
+            //    .Include(fs => fs.Articles
+            //    .OrderByDescending(a => a.CreatedAt)
+            //    .Take(7))
+            //    .ToListAsync();
         }
 
         public async Task<FeedSource> GetFeedSourceWithArticlesById(int FeedSourceId)
         {
             return await _context.FeedSource
+                .Where(fs => fs.Id == FeedSourceId)
                 .Select(fs => new FeedSource
                 {
                     Name = fs.Name,
@@ -76,7 +84,7 @@ namespace api.Infrastructure.Repositories
                     .Take(7)
                     .ToList()
                 })
-                .FirstOrDefaultAsync(fs => fs.Id == FeedSourceId);
+                .FirstOrDefaultAsync();
         }
     }
 }
