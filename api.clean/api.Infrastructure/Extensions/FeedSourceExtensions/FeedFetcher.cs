@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.ServiceModel.Syndication;
+using api.Infrastructure.Extensions.SentimentExtensions;
 
 namespace api.Infrastructure.Extensions.FeedSourceExtensions
 {
@@ -17,13 +18,15 @@ namespace api.Infrastructure.Extensions.FeedSourceExtensions
         private readonly IFeedSourceRepository _feedSourceRepository;
         private readonly IArticleRepository _articleRepository;
         private readonly HttpClient _httpClient;
+        private readonly ISentimentAnalyzer _sentimentAnalyzer;
 
-        public FeedFetcher(HttpClient httpClient, ILogger<FeedFetcher> logger, IFeedSourceRepository feedSourceRepository, IArticleRepository articleRepository)
+        public FeedFetcher(HttpClient httpClient, ILogger<FeedFetcher> logger, IFeedSourceRepository feedSourceRepository, IArticleRepository articleRepository, ISentimentAnalyzer sentimentAnalyzer)
         {
             _httpClient = httpClient;
             _logger = logger;
             _feedSourceRepository = feedSourceRepository;
             _articleRepository = articleRepository;
+            _sentimentAnalyzer = sentimentAnalyzer;
         }
 
         public async Task FetchAllFeedsAsync()
@@ -42,16 +45,32 @@ namespace api.Infrastructure.Extensions.FeedSourceExtensions
                     using var reader = XmlReader.Create(stream);
                     var feed = SyndicationFeed.Load(reader);
 
+                    // Sentiment Score
+                    float sentimentScore = 0.5f; // Default/neutral score
+
                     // Map to Article entities - manually
-                    var articles = feed.Items.Select(item => new Article
+                    var articles = feed.Items.Select(item =>
                     {
-                        Title = item.Title.Text,
-                        Content = item.Summary.Text,
-                        Url = item.Links.FirstOrDefault()?.Uri.ToString(),
-                        PublishedAt = item.PublishDate.UtcDateTime,
-                        FeedSourceId = feedSource.Id,
-                    }).ToList();
-                    await SaveArticleAsync(articles);
+                        try
+                        {
+                            sentimentScore = _sentimentAnalyzer.AnalyzeSentiment(item.Summary.Text);
+                        } catch (Exception ex)
+                        {
+                            _logger.LogError(ex, "Error Getting the Sentiment Score");
+                        }
+
+                        return new Article
+                        {
+                            Title = item.Title.Text,
+                            //Description = item.Content?,
+                            Content = item.Summary.Text,
+                            Url = item.Links.FirstOrDefault()?.Uri.ToString(),
+                            PublishedAt = item.PublishDate.UtcDateTime,
+                            SentimentScore = sentimentScore,
+                            FeedSourceId = feedSource.Id,
+                        };
+                    });
+                    await SaveArticleAsync(articles.ToList());
                 }
                 catch (Exception ex)
                 {

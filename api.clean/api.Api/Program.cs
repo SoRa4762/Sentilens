@@ -17,6 +17,7 @@ using api.Core.Services.AuthenticationServices;
 using api.Infrastructure.Extensions.FeedSourceExtensions;
 using FluentValidation;
 using api.Application.Commands.UserCommands;
+using api.Infrastructure.Extensions.SentimentExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -128,6 +129,7 @@ builder.Services.AddTransient<IValidator<LoginUserCommand>, LoginUserCommandVali
 // EXTENSIONS
 builder.Services.AddHostedService<FeedAggregatorService>();
 //builder.Services.AddScoped<IFeedFetcher, FeedFetcher>(); - remove it, replaced XML reader with HttpClient so yeah!
+builder.Services.AddSingleton<ISentimentAnalyzer, SentimentAnalyzer>();
 
 // Http Client
 builder.Services.AddHttpClient<IFeedFetcher, FeedFetcher>(client =>

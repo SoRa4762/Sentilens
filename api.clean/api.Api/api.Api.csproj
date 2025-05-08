@@ -24,4 +24,10 @@
     <ProjectReference Include="..\api.Infrastructure\api.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="yelp_labelled.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
