@@ -18,6 +18,8 @@ using api.Infrastructure.Extensions.FeedSourceExtensions;
 using FluentValidation;
 using api.Application.Commands.UserCommands;
 using api.Infrastructure.Extensions.SentimentExtensions;
+using api.Core.Services.OTPServices;
+using api.Core.Services.EmailServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -120,11 +122,13 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>)); // serv
 builder.Services.AddTransient<IArticleRepository, ArticleRepository>(); // adds transient service of type specified in interface to implementation type specified in repositories
 builder.Services.AddTransient<IFeedSourceRepository, FeedSourceRepository>();
 
-// Authentication
+// Services
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IValidator<RegisterUserCommand>, RegisterUserCommandValidator>();
 builder.Services.AddTransient<IValidator<LoginUserCommand>, LoginUserCommandValidator>();
+builder.Services.AddScoped<IOTPService, OTPService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 // EXTENSIONS
 builder.Services.AddHostedService<FeedAggregatorService>();

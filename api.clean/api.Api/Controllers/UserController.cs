@@ -32,5 +32,25 @@ namespace api.Api.Controllers
                 failure => BadRequest(new { Errors = failure })
                 );
         }
+
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return result.Match<IActionResult>(
+                success => Ok(success),
+                failure => BadRequest(new { Errors = failure })
+                );
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return result.Match<IActionResult>(
+                success => Ok(success),
+                failure => BadRequest(new { Errors = failure })
+                );
+        }
     }
 }
