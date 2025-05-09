@@ -22,7 +22,13 @@ namespace api.Core.Services.OTPServices
                 return new OTPValidationResult(false, "The OTP has expired.");
 
             if (user.OtpAttemptCount >= 5)
+            {
+                user.OtpAttemptCount = 0;
+                user.OtpSecret = null;
+                user.OtpExpiration = null;
                 return new OTPValidationResult(false, "You have crossd the 5 attempt limits, try again later!");
+            }
+
 
             if(user.OtpSecret != otp)
             {

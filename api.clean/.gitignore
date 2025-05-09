@@ -5,6 +5,7 @@
 
 # dotenv files
 .env
+appsetting.json
 
 # User-specific files
 *.rsuser
