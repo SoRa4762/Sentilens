@@ -52,5 +52,15 @@ namespace api.Api.Controllers
                 failure => BadRequest(new { Errors = failure })
                 );
         }
+
+        [HttpPost("update-password")]
+        public async Task<IActionResult> UpdatePassword(UpdatePasswordCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return result.Match<IActionResult>(
+                success => Ok(success),
+                failure => BadRequest(new { Errors = failure })
+                );
+        }
     }
 }

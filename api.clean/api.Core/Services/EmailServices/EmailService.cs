@@ -31,6 +31,7 @@ namespace api.Core.Services.EmailServices
             var senderName = emailSettings["SenderName"];
             var useSSL = bool.Parse(emailSettings["UseSSL"]);
 
+            // message setup
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress(senderName, senderEmail));
             message.To.Add(new MailboxAddress("", email));
@@ -106,7 +107,6 @@ namespace api.Core.Services.EmailServices
                 </html>";
             message.Subject = "Reset Password OTP";
             message.Body = new TextPart("html") { Text = body };
-
 
             using var client = new SmtpClient();
             await client.ConnectAsync(smtpServer, smtpPort, useSSL);
