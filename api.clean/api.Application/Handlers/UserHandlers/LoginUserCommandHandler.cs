@@ -3,6 +3,8 @@ using api.Application.Responses;
 using api.Core.Entities;
 using api.Core.Interfaces;
 using api.Core.Services.AuthenticationServices;
+using api.Core.Services.EmailServices;
+using api.Core.Services.OTPServices;
 using api.Core.Utilities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -18,11 +20,15 @@ namespace api.Application.Handlers.UserHandlers
     {
         private readonly IUserRepository _userRepository;
         private readonly ITokenService _tokenService;
+        private readonly IEmailService _emailService;
+        private readonly IOTPService _otpService;
 
-        public LoginUserCommandHandler(IUserRepository userRepository, ITokenService tokenService)
+        public LoginUserCommandHandler(IUserRepository userRepository, ITokenService tokenService, IEmailService emailService, IOTPService otpService)
         {
             _userRepository = userRepository;
             _tokenService = tokenService;
+            _emailService = emailService;
+            _otpService = otpService;
         }
 
         public async Task<Result<UserResponse>> Handle(LoginUserCommand request, CancellationToken cancellationToken)
@@ -34,14 +40,28 @@ namespace api.Application.Handlers.UserHandlers
             if (!await _userRepository.CheckPasswordAsync(user, request.Password))
                 return Result<UserResponse>.Failure("Invalid email or password");
 
-            var userResponse = new UserResponse(_tokenService.GenerateToken(user))
+            if (user.TwoFactorEnabled)
             {
-                Id = user.Id,
-                Email = user.Email,
-                UserName = user.UserName
-            };
+                // Handle two-factor authentication here
+                var otp = _otpService.GenerateOTP();
+                user.OtpAttemptCount = 0;
+                user.OtpExpiration = DateTime.UtcNow.AddMinutes(10);
+                user.OtpSecret = otp;
 
-            return Result<UserResponse>.Success(userResponse);
+                await _userRepository.UpdateUserAsync(user);
+
+                await _emailService.SendOTPEmail(user.Email, otp);
+                return Result<UserResponse>.Failure("Your OTP has been sent to your Email. Please verify your identity.");
+            } else
+            {
+                var userResponse = new UserResponse(_tokenService.GenerateToken(user))
+                {
+                    Id = user.Id,
+                    Email = user.Email,
+                    UserName = user.UserName
+                };
+                return Result<UserResponse>.Success(userResponse);
+            }
         }
     }
 }

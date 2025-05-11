@@ -31,5 +31,11 @@ namespace api.Infrastructure.Repositories
         {
             return await _userManager.CreateAsync(user, password);
         }
+
+        public async Task<bool> UpdateUserAsync(User user)
+        {
+            var result = await _userManager.UpdateAsync(user);
+            return result.Succeeded;
+        }
     }
 }

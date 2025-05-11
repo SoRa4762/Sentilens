@@ -60,7 +60,17 @@ namespace api.Api.Controllers
             return result.Match<IActionResult>(
                 success => Ok(success),
                 failure => BadRequest(new { Errors = failure })
-                );
+            );
+        }
+
+        [HttpPost("two-factor")]
+        public async Task<IActionResult> TwoFactor(TwoFactorCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return result.Match<IActionResult>(
+                success => Ok(success),
+                failure => BadRequest(new {Errors = failure })
+            );
         }
     }
 }
