@@ -1,0 +1,26 @@
+﻿using api.Api.Controllers.Base;
+using api.Application.Queries.UserQueries;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+
+namespace api.Api.Controllers
+{
+    public class UserTopicController : ApiController
+    {
+        private readonly IMediator _mediator;
+        public UserTopicController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
+        [HttpGet("{userId}/{topicId}")]
+        public async Task<IActionResult> GetUserTopic(string userId, int topicId)
+        {
+            var query = new GetUserTopicQuery(userId, topicId);
+            var result = await _mediator.Send(query);
+            return result.Match<IActionResult>(
+                success => Ok(success),
+                failure => BadRequest(new { Errors = failure })
+            );
+        }
+}

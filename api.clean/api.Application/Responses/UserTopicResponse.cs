@@ -4,16 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace api.Core.Entities
+namespace api.Application.Responses
 {
-    public class UserTopic
+    public record UserTopicResponse
     {
         public string UserId { get; set; }
-        public int TopicId { get; set; }
+        public string TopicName { get; set; }
         public DateTime SubscribedDate { get; set; }
-
-        // Navigation Properties (one to one)
-        public User User { get; set; }
-        public Topic Topic { get; set; }
     }
 }

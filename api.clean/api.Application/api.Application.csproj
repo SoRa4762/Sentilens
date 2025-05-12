@@ -17,4 +17,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.15" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\UserTopicCommands\" />
+  </ItemGroup>
+
 </Project>
