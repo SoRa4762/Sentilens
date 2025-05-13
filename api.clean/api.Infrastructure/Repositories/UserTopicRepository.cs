@@ -1,9 +1,8 @@
-﻿using api.Application.Responses;
-using api.Core.Entities;
+﻿using api.Core.Entities;
 using api.Core.Interfaces;
+using api.Core.Utilities;
 using api.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using Org.BouncyCastle.Asn1.Ocsp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,17 +19,11 @@ namespace api.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<UserTopic> GetUserTopicByIdAsync(string userId, int topicId)
+        public async Task<IReadOnlyList<UserTopic>> GetUserTopicByIdAsync(string userId, int toipcId)
         {
             return await _context.UserTopics
-                .Include(ut => ut.Topic)
-                .Where(ut => ut.UserId == userId)
-                .Select(ut => new UserTopicResponse
-                {
-                    UserId = ut.UserId,
-                    TopicName = ut.Topic.Name,
-                    SubscribedDate = ut.SubscribedDate
-                })
+                .Include(u => u.User)
+                .ThenInclude(ut => ut.UserTopics)
                 .ToListAsync();
         }
     }

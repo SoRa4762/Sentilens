@@ -8,8 +8,9 @@ namespace api.Application.Responses
 {
     public record UserTopicResponse
     {
-        public string UserId { get; set; }
-        public string TopicName { get; set; }
+        public string UserId { get; set; } = string.Empty;
+        public int TopicId { get; set; }
+        public string TopicName { get; set; } = string.Empty;
         public DateTime SubscribedDate { get; set; }
     }
 }

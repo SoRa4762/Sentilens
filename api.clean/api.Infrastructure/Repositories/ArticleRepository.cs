@@ -53,7 +53,7 @@ namespace api.Infrastructure.Repositories
         public async Task<IReadOnlyList<Article>> GetAllArticlesWithFeedSource()
         {
             return await _context.Article
-                .Include(fs => fs.FeedSource)
+                .Include(a => a.FeedSource)
                 .ThenInclude(fs => fs.FeedSourceTopics)
                 .ToListAsync();
         }

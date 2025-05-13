@@ -114,7 +114,7 @@ builder.Services.AddAuthentication(options =>
         };
     });
 
-// AutoMappers and MediatR
+// AutoMappers x MediatR x Repositories
 builder.Services.AddAutoMapper(typeof(Program));
 //builder.Services.AddMediatR(typeof(CreateArticleCommandHandler).Assembly); -> use this if the cfg does not have RegisterServicesFromAssembly, unavailable to MediatR version below 12
 builder.Services.AddMediatR(cfg =>
@@ -122,6 +122,7 @@ builder.Services.AddMediatR(cfg =>
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>)); // service type and implementation type
 builder.Services.AddTransient<IArticleRepository, ArticleRepository>(); // adds transient service of type specified in interface to implementation type specified in repositories
 builder.Services.AddTransient<IFeedSourceRepository, FeedSourceRepository>();
+builder.Services.AddScoped<IUserTopicRepository, UserTopicRepository>();
 
 // Services
 builder.Services.AddScoped<ITokenService, TokenService>();

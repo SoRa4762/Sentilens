@@ -1,5 +1,6 @@
 ﻿using api.Api.Controllers.Base;
-using api.Application.Queries.UserQueries;
+using api.Application.Queries.UserTopicQueries;
+using api.Core.Utilities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,13 +15,14 @@ namespace api.Api.Controllers
         }
 
         [HttpGet("{userId}/{topicId}")]
-        public async Task<IActionResult> GetUserTopic(string userId, int topicId)
+        public async Task<IActionResult> GetUserTopicById(string userId, int topicId)
         {
-            var query = new GetUserTopicQuery(userId, topicId);
+            var query = new GetUserTopicByIdQuery(userId, topicId);
             var result = await _mediator.Send(query);
             return result.Match<IActionResult>(
                 success => Ok(success),
                 failure => BadRequest(new { Errors = failure })
             );
         }
+    }
 }

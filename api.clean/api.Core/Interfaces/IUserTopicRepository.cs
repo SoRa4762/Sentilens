@@ -1,4 +1,5 @@
 ﻿using api.Core.Entities;
+using api.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace api.Core.Interfaces
 {
     public interface IUserTopicRepository
     {
-        Task<UserTopic> GetUserTopicByIdAsync(string userId, int topicId);
+        Task<IReadOnlyList<UserTopic>> GetUserTopicByIdAsync(string userId, int topicId);
     }
 }

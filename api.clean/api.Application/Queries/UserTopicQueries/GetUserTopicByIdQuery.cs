@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace api.Application.Queries.UserQueries
+namespace api.Application.Queries.UserTopicQueries
 {
-    public class GetUserTopicQuery : IRequest<Result<UserTopicResponse>>
+    public record GetUserTopicByIdQuery : IRequest<Result<IEnumerable<UserTopicResponse>>>
     {
-        public string UserId { get; set; }
+        public string UserId { get; set; } = string.Empty;
         public int TopicId { get; set; }
-        public GetUserTopicQuery(string userId, int topicId)
+        public GetUserTopicByIdQuery(string userId, int topicId)
         {
             UserId = userId;
             TopicId = topicId;
