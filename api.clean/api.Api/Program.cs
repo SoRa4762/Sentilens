@@ -122,11 +122,12 @@ builder.Services.AddMediatR(cfg =>
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>)); // service type and implementation type
 builder.Services.AddTransient<IArticleRepository, ArticleRepository>(); // adds transient service of type specified in interface to implementation type specified in repositories
 builder.Services.AddTransient<IFeedSourceRepository, FeedSourceRepository>();
-builder.Services.AddScoped<IUserTopicRepository, UserTopicRepository>();
+builder.Services.AddTransient<IUserTopicRepository, UserTopicRepository>();
+builder.Services.AddTransient<ITopicRepository, TopicRepository>();
 
-// Services
-builder.Services.AddScoped<ITokenService, TokenService>();
+// Authenticaion Services
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddTransient<IValidator<RegisterUserCommand>, RegisterUserCommandValidator>();
 builder.Services.AddTransient<IValidator<LoginUserCommand>, LoginUserCommandValidator>();
 builder.Services.AddScoped<IOTPService, OTPService>();

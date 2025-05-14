@@ -53,12 +53,14 @@ namespace api.Infrastructure.Data
             modelBuilder.Entity<UserTopic>()
                 .HasOne(ut => ut.User)
                 .WithMany(u => u.UserTopics)
-                .HasForeignKey(ut => ut.UserId);
-            
+                .HasForeignKey(ut => ut.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<UserTopic>()
                 .HasOne(ut => ut.Topic)
                 .WithMany(t => t.UserTopics)
-                .HasForeignKey(ut => ut.TopicId);
+                .HasForeignKey(ut => ut.TopicId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             List<IdentityRole> identityRoles = new List<IdentityRole>
             {

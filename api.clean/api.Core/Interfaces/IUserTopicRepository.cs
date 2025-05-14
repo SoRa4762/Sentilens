@@ -11,5 +11,9 @@ namespace api.Core.Interfaces
     public interface IUserTopicRepository
     {
         Task<IReadOnlyList<UserTopic>> GetUserTopicByIdAsync(string userId, int topicId);
+        Task<Result<bool>> AddUserTopicAsync(string userId, int topicId);
+        Task<Result<bool>> DeleteUserTopic(string userId, int topicId);
+        // do we even?
+        //Task<Result<bool>> UpdateUserTopicAsync(string userId, int topicId);
     }
 }
