@@ -62,7 +62,7 @@ namespace api.Infrastructure.Repositories
             return Result<bool>.Success(true);
         }
 
-        public async Task<IReadOnlyList<UserTopic>> GetUserTopicByIdAsync(string userId, int topicId)
+        public async Task<IReadOnlyList<UserTopic>> GetUserTopicByIdsAsync(string userId, int topicId)
         {
             //return await _context.UserTopics
             //    .Include(u => u.User)
@@ -72,6 +72,26 @@ namespace api.Infrastructure.Repositories
             var userTopics = await _context.UserTopics
                 .Include(ut => ut.Topic)
                 .Where(ut => ut.UserId == userId && ut.TopicId == topicId)
+                .ToListAsync();
+
+            return userTopics;
+        }
+
+        public async Task<IReadOnlyList<UserTopic>> GetUserTopicsByUserIdAsync(string userId)
+        {
+            var userTopics = await _context.UserTopics
+                .Include(ut => ut.Topic)
+                .Where(ut => ut.UserId == userId)
+                .ToListAsync();
+
+            return userTopics;
+        }
+
+        public async Task<IReadOnlyList<UserTopic>> GetUsersByTopicIdAsync(int topicId)
+        {
+            var userTopics = await _context.UserTopics
+                .Include(ut => ut.Topic)
+                .Where(ut => ut.TopicId == topicId)
                 .ToListAsync();
 
             return userTopics;

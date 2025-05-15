@@ -10,7 +10,7 @@ namespace api.Core.Entities
     {
         public string UserId { get; set; }
         public int TopicId { get; set; }
-        public DateTime SubscribedDate { get; set; }
+        public DateTime SubscribedDate { get; set; } = DateTime.UtcNow;
 
         // Navigation Properties (one to one)
         public User User { get; set; }

@@ -1,6 +1,5 @@
 ﻿using api.Application.Queries.UserTopicQueries;
 using api.Application.Responses;
-using api.Core.Entities;
 using api.Core.Interfaces;
 using api.Core.Utilities;
 using MediatR;
@@ -12,19 +11,19 @@ using System.Threading.Tasks;
 
 namespace api.Application.Handlers.UserTopicHandlers
 {
-    public class GetUserTopicByIdQueryHandler : IRequestHandler<GetUserTopicByIdQuery, Result<IEnumerable<UserTopicResponse>>>
+    public class GetUserTopicsByUserIdQueryHandler : IRequestHandler<GetUserTopicsByUserIdQuery, Result<IReadOnlyList<UserTopicResponse>>>
     {
         private readonly IUserTopicRepository _userTopicRepository;
-        public GetUserTopicByIdQueryHandler(IUserTopicRepository userTopicRepository)
+        public GetUserTopicsByUserIdQueryHandler(IUserTopicRepository userTopicRepository)
         {
             _userTopicRepository = userTopicRepository;
         }
 
-        public async Task<Result<IEnumerable<UserTopicResponse>>> Handle(GetUserTopicByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Result<IReadOnlyList<UserTopicResponse>>> Handle(GetUserTopicsByUserIdQuery request, CancellationToken cancellationToken)
         {
-            var userTopics = await _userTopicRepository.GetUserTopicByIdAsync(request.UserId, request.TopicId);
+            var userTopics = await _userTopicRepository.GetUserTopicsByUserIdAsync(request.userId);
             if (userTopics == null)
-                return Result<IEnumerable<UserTopicResponse>>.Failure("User not found!");
+                return Result<IReadOnlyList<UserTopicResponse>>.Failure("User not found!");
 
             var mappedUserTopics = userTopics.Select(ut => new UserTopicResponse
             {
@@ -34,7 +33,7 @@ namespace api.Application.Handlers.UserTopicHandlers
                 SubscribedDate = ut.SubscribedDate
             });
 
-            return Result<IEnumerable<UserTopicResponse>>.Success(mappedUserTopics);
+            return Result<IReadOnlyList<UserTopicResponse>>.Success(mappedUserTopics.ToList());
         }
     }
 }

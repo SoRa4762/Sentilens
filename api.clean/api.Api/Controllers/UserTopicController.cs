@@ -15,10 +15,21 @@ namespace api.Api.Controllers
             _mediator = mediator;
         }
 
+        [HttpGet("topics/{userId}")]
+        public async Task<IActionResult> GetUserTopicsByUserId(string userId)
+        {
+            var query = new GetUserTopicsByUserIdQuery(userId);
+            var result = await _mediator.Send(query);
+            return result.Match<IActionResult>(
+                success => Ok(success),
+                failure => BadRequest(new { Errors = failure })
+            );
+        }
+
         [HttpGet("{userId}/{topicId}")]
         public async Task<IActionResult> GetUserTopicById(string userId, int topicId)
         {
-            var query = new GetUserTopicByIdQuery(userId, topicId);
+            var query = new GetUserTopicByIdsQuery(userId, topicId);
             var result = await _mediator.Send(query);
             return result.Match<IActionResult>(
                 success => Ok(success),
@@ -40,6 +51,17 @@ namespace api.Api.Controllers
         public async Task<IActionResult> DeleteUserTopic(string userId, int topicId)
         {
             var query = new DeleteUserTopicQuery(userId, topicId);
+            var result = await _mediator.Send(query);
+            return result.Match<IActionResult>(
+                success => Ok(success),
+                failure => BadRequest(new { Errors = failure })
+            );
+        }
+
+        [HttpGet("users/{topicId}")]
+        public async Task<IActionResult> GetUsersByTopicId(int topicId)
+        {
+            var query = new GetUsersByTopicIdQuery(topicId);
             var result = await _mediator.Send(query);
             return result.Match<IActionResult>(
                 success => Ok(success),

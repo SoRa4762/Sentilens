@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace api.Application.Queries.UserTopicQueries
 {
-    public record GetUserTopicByIdQuery : IRequest<Result<IEnumerable<UserTopicResponse>>>
+    public record GetUserTopicByIdsQuery : IRequest<Result<IEnumerable<UserTopicResponse>>>
     {
         public string UserId { get; set; } = string.Empty;
         public int TopicId { get; set; }
-        public GetUserTopicByIdQuery(string userId, int topicId)
+        public GetUserTopicByIdsQuery(string userId, int topicId)
         {
             UserId = userId;
             TopicId = topicId;
