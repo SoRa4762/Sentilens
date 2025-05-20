@@ -1,11 +1,9 @@
-import React from 'react'
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 const Home = (props: Props) => {
-  return (
-    <div>Home</div>
-  )
-}
+  return <div className="font-bold">Home</div>;
+};
 
-export default Home
+export default Home;

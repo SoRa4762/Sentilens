@@ -3,10 +3,10 @@ import App from "../App";
 import Loader from "@/components/common/Loader.tsx";
 import DashboardLayout from "@/components/layout/DashboardLayout.tsx";
 
-const Home = lazy(() => import("../pages/Home.tsx"));
-const About = lazy(() => import("../pages/About.tsx"));
-const NotFound = lazy(() => import("../pages/NotFound.tsx"));
-const Dashboard = lazy(() => import("../pages/Dashboard.tsx"));
+const Home = lazy(() => import("../pages/home.tsx"));
+const About = lazy(() => import("../pages/about.tsx"));
+const NotFound = lazy(() => import("../pages/not-found.tsx"));
+const Dashboard = lazy(() => import("../pages/dashboard.tsx"));
 
 // Routes configuration
 const index = [
