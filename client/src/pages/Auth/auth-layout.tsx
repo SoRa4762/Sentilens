@@ -20,14 +20,14 @@ const AuthLayout = ({
   footerLinkHref,
 }: IAuthLayoutProps) => {
   return (
-    <div className="h-screen w-full flex flex-col px-4">
-      <header className="h-16 w-full mb-6">
+    <div className="h-screen w-full flex flex-col px-4 justify-between items-center">
+      <header className="h-14 w-full">
         <Link to="/" className="h-full w-full flex items-center gap-2">
           <SentilensLogo className="h-8 w-8" />
           <span className="font-bold text-xl">Sentilens</span>
         </Link>
       </header>
-      <main className="h-full w-full flex flex-col justify-center items-center gap-2">
+      <main className=" w-[30rem] flex flex-col justify-center items-center gap-4">
         <h1 className="font-bold text-3xl">{heading}</h1>
         <h2 className="font-light text-lg text-gray-500">{subHeading}</h2>
         {children}

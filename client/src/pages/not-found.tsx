@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Home, Search, HelpCircle } from "lucide-react";
 import { SentilensLogo } from "@/components/sentilens-logo";
+import { FaHome, FaSearch } from "react-icons/fa";
+import { BiHelpCircle } from "react-icons/bi";
 
 export default function NotFound() {
   return (
@@ -34,13 +35,13 @@ export default function NotFound() {
         <div className="flex flex-col gap-4 sm:flex-row">
           <Button size="lg" className="gap-2" asChild>
             <Link to="/">
-              <Home className="h-5 w-5" />
+              <FaHome className="h-5 w-5" />
               Return to Home
             </Link>
           </Button>
           <Button variant="outline" size="lg" className="gap-2" asChild>
             <Link to="/articles">
-              <Search className="h-5 w-5" />
+              <FaSearch className="h-5 w-5" />
               Browse Articles
             </Link>
           </Button>
@@ -62,7 +63,7 @@ export default function NotFound() {
             </Button>
             <Button variant="ghost" size="sm" className="gap-2" asChild>
               <Link to="/help">
-                <HelpCircle className="h-4 w-4" />
+                <BiHelpCircle className="h-4 w-4" />
                 Help Center
               </Link>
             </Button>
