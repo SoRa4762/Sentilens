@@ -1,11 +1,16 @@
-import React from 'react'
+import React from "react";
+import SocialLoginButtons from "./social-login-buttons";
 
-type Props = {}
+type Props = {};
 
 const SigninForm = (props: Props) => {
   return (
-    <div>SigninForm</div>
-  )
-}
+    <div className="h-full w-ful">
+      <SocialLoginButtons />
+      <p></p>
+      SigninForm
+    </div>
+  );
+};
 
-export default SigninForm
+export default SigninForm;

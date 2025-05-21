@@ -3,10 +3,13 @@
 
 @custom-variant dark (&:is(.dark *));
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
 }
 
 @theme inline {
