@@ -1,11 +1,14 @@
-import React from 'react'
+import ProtectedRoute from "@/routes/ProtectedRoute";
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 const About = (props: Props) => {
   return (
-    <div>About</div>
-  )
-}
+    <ProtectedRoute>
+      <div>About</div>
+    </ProtectedRoute>
+  );
+};
 
-export default About
+export default About;

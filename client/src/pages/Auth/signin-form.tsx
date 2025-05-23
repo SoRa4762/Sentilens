@@ -8,7 +8,8 @@ import { Input } from "@/components/ui/input";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import type { ISignInForm } from "@/interfaces/auth";
+import type { ISignInForm, IUserData } from "@/interfaces/auth";
+import { signin } from "@/api/auth";
 
 const SigninForm = () => {
   const navigate = useNavigate();
@@ -32,10 +33,9 @@ const SigninForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log(formData);
-
     try {
-      setIsPending(true);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // await new Promise((resolve) => setTimeout(resolve, 1000));
+      // setIsPending(false);
 
       if (formData.email === null || formData.email === "")
         throw new Error("Email is required!");
@@ -49,7 +49,42 @@ const SigninForm = () => {
       if (formData.password.length < 8)
         throw new Error("Password length should be more than 8 characters");
 
-      navigate("/");
+      // signin - try catch
+      setIsPending(true);
+      try {
+        const doSignin = await signin(formData);
+        const data = await doSignin;
+        if (!data.data.Errors) {
+          console.log(data.data);
+
+          const userData: IUserData = {
+            userId: data.data.Id,
+            email: data.data.Email,
+            username: data.data.UserName,
+            token: data.data.Token,
+          };
+
+          localStorage.setItem("userData", JSON.stringify(userData));
+          navigate("/");
+        } else {
+          throw new Error(data.data.Errors);
+        }
+      } catch (err) {
+        setIsPending(false);
+        console.log(err);
+        setError(
+          err instanceof Error
+            ? // @ts-expect-error: Unreachable code error
+              err.response.data.Errors
+            : "An unexpected error occured when logging in"
+        );
+
+        // setError(
+        //   typeof err === "string"
+        //     ? err
+        //     : "An unexpected error occured when logging in"
+        // );
+      }
     } catch (err) {
       setError(
         err instanceof Error
@@ -61,7 +96,7 @@ const SigninForm = () => {
 
   return (
     <div className="h-full w-full flex flex-col gap-6">
-      <SocialLoginButtons />
+      <SocialLoginButtons isPending={isPending} />
       <FormDivider text="Or continue with" />
       {error && (
         <Alert className="flex items-center">

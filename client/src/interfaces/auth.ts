@@ -5,7 +5,15 @@ export interface ISignInForm {
 }
 
 export interface ISignUpForm {
+  username: string;
   email: string;
   password: string;
   confirmPassword: string;
+}
+
+export interface IUserData {
+  userId: string;
+  email: string;
+  username: string;
+  token: string;
 }

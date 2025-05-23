@@ -1,9 +1,14 @@
+import ProtectedRoute from "@/routes/ProtectedRoute";
 import React from "react";
 
 type Props = {};
 
 const Home = (props: Props) => {
-  return <div className="font-bold">Home</div>;
+  return (
+    <ProtectedRoute>
+      <div className="font-bold">Home</div>;
+    </ProtectedRoute>
+  );
 };
 
 export default Home;

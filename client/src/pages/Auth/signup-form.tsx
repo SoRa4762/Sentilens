@@ -7,11 +7,16 @@ import { CircleAlert } from "lucide-react";
 import { useState } from "react";
 import SocialLoginButtons from "./social-login-buttons";
 import FormDivider from "./form-divider";
+import { signup } from "@/api/auth";
+import { useNavigate } from "react-router-dom";
+import Loader from "@/components/common/Loader";
 
 const SignupForm = () => {
+  const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
   const [isPending, setIsPending] = useState<boolean>(false);
   const [formData, setFormData] = useState<ISignUpForm>({
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -24,11 +29,10 @@ const SignupForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsPending(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      setIsPending(false);
+      if (formData.username === null || formData.username === "")
+        throw new Error("Username is required!");
 
       if (formData.email === null || formData.email === "")
         throw new Error("Email is required!");
@@ -44,6 +48,25 @@ const SignupForm = () => {
 
       if (formData.confirmPassword !== formData.password)
         throw new Error("Passwords do not match!");
+
+      setIsPending(true);
+      try {
+        const doSignUp = await signup(formData);
+        const response = await doSignUp.data;
+
+        if (!response) throw new Error("Error tring to sign up user!");
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        <Loader />;
+        navigate("/signin");
+      } catch (err) {
+        setIsPending(false);
+        setError(
+          err instanceof Error
+            ? //@ts-expect-error: I know better bruh
+              err.response.data.Errors
+            : "An Error Occured trying to Sign Up"
+        );
+      }
     } catch (err) {
       setError(
         err instanceof Error
@@ -56,8 +79,9 @@ const SignupForm = () => {
   return (
     <>
       <div className="h-full w-full flex flex-col gap-4">
-        <SocialLoginButtons />
+        <SocialLoginButtons isPending={isPending} />
         <FormDivider text="Or continue with" />
+
         {error && (
           <Alert>
             <CircleAlert />
@@ -66,7 +90,16 @@ const SignupForm = () => {
             </AlertDescription>
           </Alert>
         )}
+
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <Label htmlFor="username">Username</Label>
+          <Input
+            name="username"
+            id="username"
+            type="text"
+            disabled={isPending}
+            onChange={handleInputChange}
+          />
           <Label htmlFor="email">Email</Label>
           <Input
             id="email"
