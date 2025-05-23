@@ -7,19 +7,14 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
-
-interface IFormDataInterface {
-  email: string;
-  password: string;
-  rememberMe: boolean;
-}
+import { useNavigate } from "react-router-dom";
+import type { ISignInForm } from "@/interfaces/auth";
 
 const SigninForm = () => {
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
   const [isPending, setIsPending] = useState<boolean>(false);
-  const [formData, setFormData] = useState<IFormDataInterface>({
+  const [formData, setFormData] = useState<ISignInForm>({
     email: "",
     password: "",
     rememberMe: false,

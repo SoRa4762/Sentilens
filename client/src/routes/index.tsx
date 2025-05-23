@@ -4,6 +4,7 @@ import Loader from "@/components/common/Loader.tsx";
 import DashboardLayout from "@/components/layout/DashboardLayout.tsx";
 import AuthLayout from "@/pages/Auth/auth-layout.tsx";
 import SigninForm from "@/pages/Auth/signin-form.tsx";
+import SignupForm from "@/pages/Auth/signup-form.tsx";
 
 const Home = lazy(() => import("../pages/home.tsx"));
 const About = lazy(() => import("../pages/about.tsx"));
@@ -63,6 +64,22 @@ const index = [
             >
               <SigninForm />
               {/* children does not have to be passed through props */}
+            </AuthLayout>
+          </Suspense>
+        ),
+      },
+      {
+        path: "/signup",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <AuthLayout
+              heading="Create an account"
+              subHeading="Create an account to get started"
+              footerText="Already have an account?"
+              footerLinkText="Sign in"
+              footerLinkHref="/signin"
+            >
+              <SignupForm />
             </AuthLayout>
           </Suspense>
         ),
