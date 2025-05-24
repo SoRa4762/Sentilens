@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace api.Application.Handlers.UserHandlers
 {
-    public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, Result<UserResponse>>
+    public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, Result<bool>>
     {
         private readonly IUserRepository _userRepository;
         private readonly ITokenService _tokenService; // to create tokens if user is authenticated or created
@@ -26,11 +26,11 @@ namespace api.Application.Handlers.UserHandlers
             _tokenService = tokenService;
         }
 
-        public async Task<Result<UserResponse>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+        public async Task<Result<bool>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
             var existingUser = await _userRepository.GetByEmailAsync(request.Email);
             if (existingUser != null)
-                return Result<UserResponse>.Failure("User already exists");
+                return Result<bool>.Failure("User already exists");
 
             var user = new User { Email = request.Email, UserName = request.Username };
             var result = await _userRepository.CreateUserAsync(user, request.Password);
@@ -38,16 +38,16 @@ namespace api.Application.Handlers.UserHandlers
             if (!result.Succeeded)
             {
                 var errorString = string.Join("\n", result.Errors.Select(e => e.Description));
-                return Result<UserResponse>.Failure(errorString);
+                return Result<bool>.Failure(errorString);
             }
 
-            var userResponse = new UserResponse(_tokenService.GenerateToken(user)){
-                Id = user.Id,
-                Email = user.Email,
-                UserName = user.UserName
-            };
+            //var userResponse = new UserResponse(_tokenService.GenerateToken(user)){
+            //    Id = user.Id,
+            //    Email = user.Email,
+            //    UserName = user.UserName
+            //};
 
-            return Result<UserResponse>.Success(userResponse);
+            return Result<bool>.Success(true);
         }
     }
 }

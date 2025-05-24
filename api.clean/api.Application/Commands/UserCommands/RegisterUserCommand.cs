@@ -11,5 +11,5 @@ namespace api.Application.Commands.UserCommands
 {
     public record RegisterUserCommand(
         string Username, string Email, string Password
-    ) : IRequest<Result<UserResponse>>;
+    ) : IRequest<Result<bool>>;
 }

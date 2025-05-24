@@ -146,12 +146,13 @@ builder.Services.AddHttpClient<IFeedFetcher, FeedFetcher>(client =>
 });
 
 // CORS policy
+var AllowAll = "AllowAll";
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll",
-        builder =>
+    options.AddPolicy(name: AllowAll,
+        policy =>
         {
-            builder.AllowAnyOrigin()
+            policy.AllowAnyOrigin()
                    .AllowAnyMethod()
                    .AllowAnyHeader();
         });
@@ -190,6 +191,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(AllowAll);
 app.UseRouting();
 app.UseHttpsRedirection();
 app.UseAuthentication();
