@@ -17,3 +17,11 @@ export interface IUserData {
   username: string;
   token: string;
 }
+
+export interface IForgotPassword {
+  email: string;
+}
+
+export interface IResetPassword {
+  email: string;
+}

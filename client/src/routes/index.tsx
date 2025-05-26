@@ -5,6 +5,7 @@ import DashboardLayout from "@/components/layout/DashboardLayout.tsx";
 import AuthLayout from "@/pages/Auth/auth-layout.tsx";
 import SigninForm from "@/pages/Auth/signin-form.tsx";
 import SignupForm from "@/pages/Auth/signup-form.tsx";
+import ForgotPasswordForm from "@/pages/Auth/forgot-password-form.tsx";
 
 const Home = lazy(() => import("../pages/home.tsx"));
 const About = lazy(() => import("../pages/about.tsx"));
@@ -82,6 +83,20 @@ const index = [
               <SignupForm />
             </AuthLayout>
           </Suspense>
+        ),
+      },
+      {
+        path: "/forgot-password",
+        element: (
+          <AuthLayout
+            heading="Forgot Password"
+            subHeading="Enter your email to reset your password"
+            footerText="Remember your password?"
+            footerLinkText="Sign In"
+            footerLinkHref="/signin"
+          >
+            <ForgotPasswordForm />
+          </AuthLayout>
         ),
       },
       {

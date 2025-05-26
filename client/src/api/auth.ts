@@ -1,4 +1,9 @@
-import type { ISignInForm, ISignUpForm } from "@/interfaces/auth";
+import type {
+  IForgotPassword,
+  IResetPassword,
+  ISignInForm,
+  ISignUpForm,
+} from "@/interfaces/auth";
 import axios from "axios";
 
 const baseUrl = "https://localhost:7143/api/v1/User";
@@ -25,8 +30,14 @@ const signup = async ({ username, email, password }: ISignUpForm) => {
 
 const twoFactor = async () => {};
 
-const resetPassword = async () => {};
+const forgotPassword = async ({ email }: IForgotPassword) => {
+  const response = await axios.post(`${baseUrl}/forgot-password`, {
+    email,
+  });
 
-const forgotPassword = async () => {};
+  return response;
+};
+
+const resetPassword = async () => {};
 
 export { signin, signup, twoFactor, resetPassword, forgotPassword };
