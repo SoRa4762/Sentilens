@@ -99,7 +99,7 @@ const SigninForm = () => {
       <SocialLoginButtons isPending={isPending} />
       <FormDivider text="Or continue with" />
       {error && (
-        <Alert className="flex items-center">
+        <Alert variant="destructive" className="border border-red-700">
           <AlertCircle className="text-red-700" />
           {/* <AlertTitle className="text-red-700">Error</AlertTitle> */}
           <AlertDescription className="text-red-700">{error}</AlertDescription>
@@ -119,9 +119,14 @@ const SigninForm = () => {
           value={formData.email}
           disabled={isPending}
         />
-        <Label htmlFor="password" className="text-sm font-medium">
-          Password
-        </Label>
+        <div className="flex justify-between items-end">
+          <Label htmlFor="password" className="text-sm font-medium">
+            Password
+          </Label>
+          <a href="/forgot-password" className="text-xs">
+            Forgot Password?
+          </a>
+        </div>
         <Input
           onChange={handleChange}
           id="password"

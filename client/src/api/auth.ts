@@ -30,7 +30,7 @@ const signup = async ({ username, email, password }: ISignUpForm) => {
 
 const twoFactor = async () => {};
 
-const forgotPassword = async ({ email }: IForgotPassword) => {
+const forgotPassword = async (email: string) => {
   const response = await axios.post(`${baseUrl}/forgot-password`, {
     email,
   });

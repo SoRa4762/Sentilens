@@ -29,7 +29,7 @@ const AuthLayout = ({
       </header>
       <main className="w-[90%] sm:w-[30rem] flex flex-col justify-center items-center gap-4">
         <h1 className="font-bold text-3xl">{heading}</h1>
-        <h2 className="font-light text-lg text-gray-500">{subHeading}</h2>
+        <h2 className="font-semibold text-md text-gray-500">{subHeading}</h2>
         {children}
         <div className="flex gap-1">
           <p>{footerText}</p>

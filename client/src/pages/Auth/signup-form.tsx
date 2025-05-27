@@ -83,7 +83,7 @@ const SignupForm = () => {
         <FormDivider text="Or continue with" />
 
         {error && (
-          <Alert>
+          <Alert variant="destructive" className="border border-red-700">
             <CircleAlert />
             <AlertDescription className="text-red-700">
               {error}

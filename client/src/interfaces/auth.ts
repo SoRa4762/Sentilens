@@ -18,10 +18,6 @@ export interface IUserData {
   token: string;
 }
 
-export interface IForgotPassword {
-  email: string;
-}
-
 export interface IResetPassword {
   email: string;
 }
