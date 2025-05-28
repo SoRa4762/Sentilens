@@ -50,28 +50,32 @@ const SignupForm = () => {
         throw new Error("Passwords do not match!");
 
       setIsPending(true);
-      try {
-        const doSignUp = await signup(formData);
-        const response = await doSignUp.data;
+      const doSignUp = await signup(formData);
+      const response = await doSignUp.data;
 
-        if (!response) throw new Error("Error tring to sign up user!");
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        <Loader />;
-        navigate("/signin");
-      } catch (err) {
-        setIsPending(false);
-        setError(
-          err instanceof Error
-            ? //@ts-expect-error: I know better bruh
-              err.response.data.Errors
-            : "An Error Occured trying to Sign Up"
-        );
-      }
+      if (!response) throw new Error("Error tring to sign up user!");
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      <Loader />;
+      navigate("/signin");
     } catch (err) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : "An unexpected error occured when submitting the form"
+      setIsPending(false);
+
+      if (err instanceof Error) {
+        //@ts-expect-error: undefined
+        if (err.response !== undefined) {
+          //@ts-expect-error: error
+          setError(err.response.data.Errors);
+        } else {
+          setError(err.message);
+        }
+      }
+
+      setError("An unexpected error occured trying to Sign Up!");
+
+      await new Promise(() =>
+        setTimeout(() => {
+          setError("");
+        }, 5000)
       );
     }
   };
@@ -127,7 +131,9 @@ const SignupForm = () => {
           <Button
             type="submit"
             disabled={isPending}
-            className="w-full cursor-pointer"
+            color="default"
+            size="lg"
+            className="w-full cursor-pointer text-md"
           >
             Sign Up
           </Button>

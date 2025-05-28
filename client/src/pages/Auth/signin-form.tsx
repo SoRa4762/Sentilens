@@ -51,47 +51,65 @@ const SigninForm = () => {
 
       // signin - try catch
       setIsPending(true);
-      try {
-        const doSignin = await signin(formData);
-        const data = await doSignin;
-        if (!data.data.Errors) {
-          console.log(data.data);
+      // try {
+      const doSignin = await signin(formData);
+      const data = await doSignin;
+      if (!data.data.Errors) {
+        console.log(data.data);
 
-          const userData: IUserData = {
-            userId: data.data.Id,
-            email: data.data.Email,
-            username: data.data.UserName,
-            token: data.data.Token,
-          };
+        const userData: IUserData = {
+          userId: data.data.Id,
+          email: data.data.Email,
+          username: data.data.UserName,
+          token: data.data.Token,
+        };
 
-          localStorage.setItem("userData", JSON.stringify(userData));
-          navigate("/");
-        } else {
-          throw new Error(data.data.Errors);
-        }
-      } catch (err) {
-        setIsPending(false);
-        console.log(err);
-        setError(
-          err instanceof Error
-            ? // @ts-expect-error: Unreachable code error
-              err.response.data.Errors
-            : "An unexpected error occured when logging in"
-        );
-
-        // setError(
-        //   typeof err === "string"
-        //     ? err
-        //     : "An unexpected error occured when logging in"
-        // );
+        localStorage.setItem("userData", JSON.stringify(userData));
+        navigate("/");
+      } else {
+        throw new Error(data.data.Errors);
       }
     } catch (err) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : "An unexpected error occured when submitting the form"
+      setIsPending(false);
+      console.log(err);
+
+      if (err instanceof Error) {
+        //@ts-expect-error: undefined
+        if (err.response !== undefined) {
+          //@ts-expect-error: error
+          setError(err.response.data.Errors);
+        } else {
+          setError(err.message);
+        }
+      }
+
+      setError("An unexpected error occured trying to Sign In!");
+
+      await new Promise(() =>
+        setTimeout(() => {
+          setError("");
+        }, 5000)
       );
+      // setError(
+      //   err instanceof Error
+      //     ? // @ts-expect-error: Unreachable code error
+      //       err.response.data.Errors
+      //     : "An unexpected error occured when logging in"
+      // );
+
+      // setError(
+      //   typeof err === "string"
+      //     ? err
+      //     : "An unexpected error occured when logging in"
+      // );
     }
+    // } catch (err) {
+    //   setError(
+    //     err instanceof Error
+    //       ? err.message
+    //       : "An unexpected error occured when submitting the form"
+    //   );
+    // }
   };
 
   return (
@@ -146,7 +164,9 @@ const SigninForm = () => {
         </span>
         <Button
           disabled={isPending}
-          className="h-10 cursor-pointer"
+          color="default"
+          size="lg"
+          className="h-10 cursor-pointer text-md"
           onClick={(e: React.FormEvent) => handleSubmit(e)}
         >
           Sign In

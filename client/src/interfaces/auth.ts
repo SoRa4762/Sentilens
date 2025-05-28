@@ -19,5 +19,28 @@ export interface IUserData {
 }
 
 export interface IResetPassword {
+  email: string | null;
+  otp: number | null;
+  newPassword: string;
+}
+
+export interface ITwoFactor {
   email: string;
+  otp: number;
+}
+
+// failed idea
+export interface IError {
+  responses: {
+    data: {
+      Errors: string[];
+    };
+  };
+}
+
+export interface IResetUserData {
+  email: string | null;
+  otp: number | null;
+  newPassword: string;
+  confirmNewPassword: string;
 }

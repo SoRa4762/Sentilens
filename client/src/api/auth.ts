@@ -3,6 +3,7 @@ import type {
   IResetPassword,
   ISignInForm,
   ISignUpForm,
+  ITwoFactor,
 } from "@/interfaces/auth";
 import axios from "axios";
 
@@ -28,7 +29,14 @@ const signup = async ({ username, email, password }: ISignUpForm) => {
   return response;
 };
 
-const twoFactor = async () => {};
+const twoFactor = async ({ email, otp }: ITwoFactor) => {
+  const response = await axios.post(`${baseUrl}/two-factor`, {
+    email,
+    otp,
+  });
+
+  return response;
+};
 
 const forgotPassword = async (email: string) => {
   const response = await axios.post(`${baseUrl}/forgot-password`, {
@@ -38,6 +46,14 @@ const forgotPassword = async (email: string) => {
   return response;
 };
 
-const resetPassword = async () => {};
+const resetPassword = async ({ email, otp, newPassword }: IResetPassword) => {
+  const response = await axios.post(`${baseUrl}/reset-password`, {
+    email,
+    otp,
+    newPassword,
+  });
+
+  return response;
+};
 
 export { signin, signup, twoFactor, resetPassword, forgotPassword };

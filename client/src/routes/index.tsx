@@ -6,6 +6,7 @@ import AuthLayout from "@/pages/Auth/auth-layout.tsx";
 import SigninForm from "@/pages/Auth/signin-form.tsx";
 import SignupForm from "@/pages/Auth/signup-form.tsx";
 import ForgotPasswordForm from "@/pages/Auth/forgot-password-form.tsx";
+import ResetPasswordForm from "@/pages/Auth/reset-password-form.tsx";
 
 const Home = lazy(() => import("../pages/home.tsx"));
 const About = lazy(() => import("../pages/about.tsx"));
@@ -96,6 +97,21 @@ const index = [
             footerLinkHref="/signin"
           >
             <ForgotPasswordForm />
+          </AuthLayout>
+        ),
+      },
+      {
+        path: "/reset-password",
+        element: (
+          <AuthLayout
+            heading="Reset Password"
+            subHeading="Enter your OTP and new password to reset your password"
+            footerText="Remember your password?"
+            footerLinkText="Sign In"
+            footerLinkHref="/signin"
+            // children={}
+          >
+            <ResetPasswordForm />
           </AuthLayout>
         ),
       },

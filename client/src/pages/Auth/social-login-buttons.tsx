@@ -6,14 +6,14 @@ const SocialLoginButtons = ({ isPending }: { isPending: boolean }) => {
     <div className="flex h-16 w-full items-center justify-center gap-4">
       <Button
         disabled={isPending}
-        className="w-1/2 bg-white text-black font-medium border border-gray-300 hover:bg-gray-100 cursor-pointer"
+        className="w-1/2 bg-white text-orange-500 font-medium border border-gray-300 hover:bg-gray-100 cursor-pointer"
       >
         <FaGoogle />
         Google
       </Button>
       <Button
         disabled={isPending}
-        className="w-1/2 bg-white text-black font-medium border border-gray-300 hover:bg-gray-100 cursor-pointer"
+        className="w-1/2 bg-white text-blue-500 font-medium border border-gray-300 hover:bg-gray-100 cursor-pointer"
       >
         <FaFacebook />
         Facebook

@@ -30,30 +30,39 @@ const ForgotPasswordForm = () => {
       if (email === "" || email === null)
         throw new Error("Email cannot be empty!");
 
-      try {
-        setIsPending(true);
-        const doForgetPassword = await forgotPassword(email);
-        if (doForgetPassword) {
-          setIsSuccess(true);
-          //for some delay, to show UI and make the process authentic
-          await new Promise((resolve) => {
-            setTimeout(resolve, 1000);
-          });
-          navigate("/reset-password");
-        }
-      } catch (err) {
-        setIsPending(false);
-        console.log(err);
-        setError(
-          err instanceof Error
-            ? //@ts-expect-error: whatever
-              err.response.data.Errors
-            : "An error occured in the process"
-        );
+      setIsPending(true);
+      const doForgetPassword = await forgotPassword(email);
+      if (doForgetPassword) {
+        setIsSuccess(true);
+        //for some delay, to show UI and make the process authentic
+        await new Promise((resolve) => {
+          setTimeout(resolve, 1000);
+        });
+
+        localStorage.setItem("userEmail", email);
+
+        navigate("/reset-password");
       }
     } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "An error occured in the process"
+      setIsPending(false);
+
+      if (err instanceof Error) {
+        console.log("Forgot Password Error: ", err);
+        //@ts-expect-error: not ok
+        if (err.response === undefined) {
+          setError(err.message);
+        } else {
+          //@ts-expect-error: ok
+          setError(err.response.data.Errors);
+        }
+      }
+
+      setError("An unexpected error occured trying Forgot Password!");
+
+      await new Promise(() =>
+        setTimeout(() => {
+          setError("");
+        }, 5000)
       );
     }
   };
@@ -105,7 +114,14 @@ const ForgotPasswordForm = () => {
               setEmail(e.target.value);
             }}
           />
-          <Button disabled={isPending}>Send reset instructions</Button>
+          <Button
+            color="default"
+            size="lg"
+            className="cursor-pointer text-md"
+            disabled={isPending}
+          >
+            Send reset instructions
+          </Button>
         </form>
       )}
     </div>
